@@ -306,3 +306,6 @@ Control BLAS threads: OMP_NUM_THREADS, MKL_NUM_THREADS, OPENBLAS_NUM_THREADS.
 - Inner-joins on `IID`, coerces numerics safely, optional mean imputation (`--impute_mean`).
 ```
 
+
+
+For full derivations and equations, see [docs/THEORY.md](docs/THEORY.md)

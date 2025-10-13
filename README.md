@@ -89,17 +89,15 @@ python fighi_ext/run_cli.py \
 
 ## Outputs (in fighi_ext/fighi_out/ by default):
 
-fighi_results.csv — interaction rows with order, fi_gain, beta_hat, info
+- fighi_results.csv — interaction rows with order, fi_gain, beta_hat, info
 
-fighi_feature_scores.csv — per-SNP FI main/interaction totals (+ optional Gene/Pathway)
+- fighi_feature_scores.csv — per-SNP FI main/interaction totals (+ optional Gene/Pathway)
 
-fighi_hypergraph.gml, fighi_cytoscape.cyjs, fighi_hypergraph.hyper
+- fighi_hypergraph.gml, fighi_cytoscape.cyjs, fighi_hypergraph.hyper
 
-fighi_summary.json, fighi_model.pkl, fighi_log.txt
+- fighi_summary.json, fighi_model.pkl, fighi_log.txt
 
-plots/ — FI gain distribution, interaction heatmap, FI vs order, convergence traces
-
-Detailed column descriptions live in docs/USAGE.md.
+- plots/ — FI gain distribution, interaction heatmap, FI vs order, convergence traces
 
 
 ## Slurm (HPC)
@@ -108,15 +106,15 @@ A ready job is in fighi_ext/examples/demo_slurm.job. It supports a single diseas
 
 ## Method in 30 seconds
 
-Score-test FI gain (logistic/linear) estimates the information contributed by a new product feature (tuple of SNPs) without full refits.
+- Score-test FI gain (logistic/linear) estimates the information contributed by a new product feature (tuple of SNPs) without full refits.
 
-Apriori-style candidate growth + variance/MAF pruning keep the search sparse.
+- Apriori-style candidate growth + variance/MAF pruning keep the search sparse.
 
-Information ratio and planner stop at a sensible max order K under power constraints.
+- Information ratio and planner stop at a sensible max order K under power constraints.
 
-Optional Westfall–Young controls family-wise error for permutations.
+- Optional Westfall–Young controls family-wise error for permutations.
 
-Full derivations and references: docs/ALGORITHM.md.
+- Full derivations and references: docs/ALGORITHM.md.
 
 ## Cite
 
@@ -235,50 +233,50 @@ python fighi_ext/run_cli.py \
 
 column	meaning
 
-hyperedge	tuple of rsIDs separated by `
+- hyperedge	tuple of rsIDs separated by `
 order	interaction order K
 
-fi_gain	Fisher-Information gain (score-test)
+- fi_gain	Fisher-Information gain (score-test)
 
-pval	optional, if permutation is enabled
+- pval	optional, if permutation is enabled
 
-beta_hat	one-step estimate(s) for coefficients
+- beta_hat	one-step estimate(s) for coefficients
 
-info	information (observed Fisher) contributing to cumulative ratio
+- info	information (observed Fisher) contributing to cumulative ratio
 
 #### fighi_feature_scores.csv
 
-Per-SNP totals aggregated across all retained edges:
+- Per-SNP totals aggregated across all retained edges:
 
-FI_total, FI_main, FI_interact, Rank, MAF
+- FI_total, FI_main, FI_interact, Rank, MAF
 
-Optional: Gene, Pathway (via annotate_fighi_features.py)
+- Optional: Gene, Pathway (via annotate_fighi_features.py)
 
 #### Hypergraphs
 
-fighi_hypergraph.gml — Gephi/Cytoscape import
+- fighi_hypergraph.gml — Gephi/Cytoscape import
 
-fighi_cytoscape.cyjs — direct Cytoscape session element JSON
+- fighi_cytoscape.cyjs — direct Cytoscape session element JSON
 
-fighi_hypergraph.hyper — simple JSON with nodes + hyperedges
+- fighi_hypergraph.hyper — simple JSON with nodes + hyperedges
 
 #### Summary & diagnostics
 
-fighi_summary.json — n_samples, n_snps, feasible K, runtime, etc.
+- fighi_summary.json — n_samples, n_snps, feasible K, runtime, etc.
 
-fighi_log.txt — run log with convergence notes & pruning summaries
+- fighi_log.txt — run log with convergence notes & pruning summaries
 
-plots/ — FI distribution, interaction heatmap, FI vs order, convergence traces
+- plots/ — FI distribution, interaction heatmap, FI vs order, convergence traces
 
 #### Memory knobs
 
-Use merge_pheno_geno_nopandas.py to avoid pandas during the heaviest join.
+- Use merge_pheno_geno_nopandas.py to avoid pandas during the heaviest join.
 
-Use --read_chunksize in run_cli.py for very wide CSVs.
+- Use --read_chunksize in run_cli.py for very wide CSVs.
 
-Limit --max_order and/or lower the atom screening quota (see pipeline.py:screen).
+- Limit --max_order and/or lower the atom screening quota (see pipeline.py:screen).
 
-Control BLAS threads: OMP_NUM_THREADS, MKL_NUM_THREADS, OPENBLAS_NUM_THREADS.
+- Control BLAS threads: OMP_NUM_THREADS, MKL_NUM_THREADS, OPENBLAS_NUM_THREADS.
 
 ```yaml
 

@@ -1,5 +1,3 @@
----
-
 ```bash
 fighi/
 ├─ fighi_ext/                     # Python package + scripts

@@ -1,0 +1,8 @@
+[INFO] Running FIGHI inside: /home/arielghislain.kemogn/fighi_extended_package/fighi_ext
+[INFO] Using data from: /work/long_lab/for_Ariel/files
+[INFO] Outputs: /home/arielghislain.kemogn/fighi_extended_package/fighi_ext/fighi_out
+== Step 0: TPED -> named CSV ==
+[INFO] Found existing /work/long_lab/for_Ariel/files/CD_filtered_named.csv; skipping conversion.
+== Step 1: Merge (no-pandas) ==
+[merge] Wrote: /work/long_lab/for_Ariel/files/CD_merged.csv
+== Step 2: Run FIGHI ==

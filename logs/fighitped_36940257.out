@@ -1,0 +1,3 @@
+== Step 1: Merge with .phen (no pandas) ==
+[merge] Wrote /work/long_lab/for_Ariel/files/CD_merged.csv with 4686 rows.
+== Step 2: Run FIGHI ==

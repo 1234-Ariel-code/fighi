@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/home/arielghislain.kemogn/fighi_extended_package/fighi_ext/run_cli.py", line 4, in <module>
+    from fighi_ext.pipeline import FIGHIPipeline
+ModuleNotFoundError: No module named 'fighi_ext'
+srun: error: th21: task 0: Exited with exit code 1

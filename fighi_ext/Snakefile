@@ -1,0 +1,25 @@
+# Simple Snakemake pipeline for FIGHI
+# Usage: snakemake -j 8 all CSV=data.csv PHENO=case trait=binary OUT=outdir
+
+CSV = config.get("CSV", "data.csv")
+PHENO = config.get("PHENO", "case")
+TRAIT = config.get("trait", "binary")
+OUT = config.get("OUT", "fighi_out")
+
+rule all:
+    input:
+        f"{OUT}/fighi_results.csv",
+        f"{OUT}/fighi_hypergraph.gml",
+        f"{OUT}/fighi_hypergraph.hyper",
+        f"{OUT}/fighi_cytoscape.cyjs"
+
+rule run_fighi:
+    output:
+        csv=f"{OUT}/fighi_results.csv",
+        gml=f"{OUT}/fighi_hypergraph.gml",
+        hyper=f"{OUT}/fighi_hypergraph.hyper",
+        cyjs=f"{OUT}/fighi_cytoscape.cyjs"
+    params:
+        outdir=OUT
+    shell:
+        "python -m fighi_ext.run_cli --csv {CSV} --pheno {PHENO} --trait {TRAIT} --outdir {params.outdir}"

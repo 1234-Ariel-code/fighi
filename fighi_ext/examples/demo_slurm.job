@@ -1,0 +1,61 @@
+#!/bin/bash
+#SBATCH --job-name=FIGHI_full
+#SBATCH --cpus-per-task=22
+#SBATCH --mem=200G
+#SBATCH --time=24:00:00
+#SBATCH --output=../logs/fighi_%j.out
+#SBATCH --error=../logs/fighi_%j.err
+
+set -euo pipefail
+
+# 0) Tag once
+DISEASE_NAME="CD"
+
+# 1) Threads
+export OMP_NUM_THREADS="${SLURM_CPUS_PER_TASK:-8}"
+export MKL_NUM_THREADS="${SLURM_CPUS_PER_TASK:-8}"
+export OPENBLAS_NUM_THREADS="${SLURM_CPUS_PER_TASK:-8}"
+export NUMEXPR_NUM_THREADS="${SLURM_CPUS_PER_TASK:-8}"
+
+# 2) Paths relative to this file (repo-root on PYTHONPATH)
+REPO_ROOT="$(cd "$(dirname "$0")"/../.. && pwd)"
+export PYTHONPATH="${REPO_ROOT}:${PYTHONPATH:-}"
+
+DATA_DIR="/work/long_lab/for_Ariel/files"
+TPED="${DATA_DIR}/${DISEASE_NAME}_origin.tped"
+TFAM="${DATA_DIR}/${DISEASE_NAME}_origin.tfam"
+PHEN="${DATA_DIR}/${DISEASE_NAME}_origin.phen"
+
+GENO_NAMED="${DATA_DIR}/${DISEASE_NAME}_filtered_named.csv"
+MERGED_CSV="${DATA_DIR}/${DISEASE_NAME}_merged.csv"
+PHENO_NAME="case"
+OUTDIR="${REPO_ROOT}/fighi_ext/fighi_out"
+
+mkdir -p "${OUTDIR}" "${REPO_ROOT}/fighi_ext/logs"
+
+# Step 0: TPED->CSV
+if [[ -f "${TPED}" ]]; then
+  if [[ -f "${TFAM}" ]]; then
+    srun -c "${SLURM_CPUS_PER_TASK}" python "${REPO_ROOT}/fighi_ext/tped_to_named_csv.py" \
+      --tped "${TPED}" --tfam "${TFAM}" --phen_file "${PHEN}" \
+      --out_csv "${GENO_NAMED}" --ref_mode major
+  else
+    srun -c "${SLURM_CPUS_PER_TASK}" python "${REPO_ROOT}/fighi_ext/tped_to_named_csv.py" \
+      --tped "${TPED}" --phen_file "${PHEN}" \
+      --out_csv "${GENO_NAMED}" --ref_mode major
+  fi
+else
+  echo "[ERROR] Missing TPED: ${TPED}"; exit 2
+fi
+
+# Step 1: Merge without pandas
+srun -c "${SLURM_CPUS_PER_TASK}" python "${REPO_ROOT}/fighi_ext/merge_pheno_geno_nopandas.py" \
+  --geno_csv "${GENO_NAMED}" --phen_file "${PHEN}" \
+  --out_csv "${MERGED_CSV}" --phen_name "${PHENO_NAME}" --impute_mean
+
+# Step 2: Run FIGHI
+srun -c "${SLURM_CPUS_PER_TASK}" python "${REPO_ROOT}/fighi_ext/run_cli.py" \
+  --csv "${MERGED_CSV}" --pheno "${PHENO_NAME}" \
+  --trait binary --outdir "${OUTDIR}" --max_order 4
+
+echo "Done. Outputs in: ${OUTDIR}"

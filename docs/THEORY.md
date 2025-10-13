@@ -228,11 +228,7 @@ FI-gain correlates with potential **predictive stability** and **causal relevanc
 
 ## 13. References
 
-1. Rao, C.R. (1945). *Information and the Accuracy Attainable in the Estimation of Statistical Parameters.*  
-2. Self, S.G. & Liang, K.Y. (1987). *Asymptotic properties of maximum likelihood estimators and likelihood ratio tests under nonstandard conditions.*  
-3. Cordell, H.J. (2009). *Detecting gene–gene interactions that underlie human diseases.*  
-4. Wu, T.T. et al. (2010). *Genome-wide association analysis by lasso penalized logistic regression.*  
-5. Kemogne, A.G. et al. (2025). *FIGHI: Fisher-Information–Guided Hyperinteraction Inference for Epistasis Discovery.*
+Kemogne, A.G. et al. (2025). *FIGHI: Fisher-Information–Guided Hyperinteraction Inference for Epistasis Discovery.*
 
 ---
 

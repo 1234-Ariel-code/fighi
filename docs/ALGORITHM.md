@@ -11,11 +11,11 @@ Standardize each SNP; compute a simple correlation (or point-biserial). Keep top
 
 ## 3. Score-test Fisher Information gain
 For binary traits (logistic):
-\[
+$$
 \Delta I = \tfrac{1}{2} \beta_{\text{1step}}^2 \cdot I_{xx}
-\]
-where \( \beta_{\text{1step}} = U / I_{xx} \), \( U = x^\top(y - p) \), \( I_{xx} = x^\top W x \), \( W = p(1-p) \), \( p = \sigma(X\beta) \).  
-For linear traits (OLS) analogous forms hold with \(\sigma^2\).
+$$
+where $\beta_{\text{1step}} = U / I_{xx}$, $U = x^\top(y - p)$, $I_{xx} = x^\top W x$, $W = p(1-p)$, $p = \sigma(X\beta)$.  
+For linear traits (OLS) analogous forms hold with $\sigma^2$.
 
 ## 4. Adaptive K
 - `planner_max_K`: uses sample size N, MAF range and target OR to estimate feasible maximum K.

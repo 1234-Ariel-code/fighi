@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+title: "FIGHI: Fisher-Information–Guided Hyperinteraction Inference"
+message: "If you use this software, please cite it."
+authors:
+  - family-names: Your
+    given-names: Name
+  - family-names: Collaborator
+    given-names: A.
+license: MIT
+repository-code: "https://github.com/<you>/FIGHI"
+keywords: [genomics, epistasis, GWAS, interactions, Fisher information, hypergraph]
+preferred-citation:
+  type: article
+  title: "FIGHI: Fisher-Information–Guided Hyperinteraction Inference for Epistasis Discovery"
+  authors:
+    - family-names: Your
+      given-names: Name
+  year: 2025

@@ -38,48 +38,48 @@ $$
 
 ## 3. Fisher Information (Score-test formulation)
 
-Let \( \ell(\beta) \) be the log-likelihood and \( U(\beta) = \partial \ell/\partial\beta \) the score.
+Let $\ell(\beta)$ be the log-likelihood and $U(\beta) = \partial \ell/\partial\beta$ the score.
 
-For a small perturbation in a new feature \( z = x_{j_1}\!*x_{j_2}\!* \dots *x_{j_K} \),
+For a small perturbation in a new feature $z = x_{j_1}\!*x_{j_2}\!* \dots *x_{j_K}$,
 the one-step update under the **score test** is
 
-\[
+$$
 \hat{\beta}_{\text{new}}^{(1)} = I^{-1}_{zz} U_z,
-\]
-where \( I_{zz} = \mathbb{E}\!\left[-\frac{\partial^2\ell}{\partial\beta_z^2}\right] \)
-and \( U_z = \frac{\partial\ell}{\partial\beta_z} \).
+$$
+where $I_{zz} = \mathbb{E}\!\left[-\frac{\partial^2\ell}{\partial\beta_z^2}\right]$
+and $U_z = \frac{\partial\ell}{\partial\beta_z}$.
 
 The **Fisher Information Gain** for adding this feature is approximated as
 
-\[
+$$
 \Delta \mathcal{I}(z) = \tfrac{1}{2} (\hat{\beta}_{\text{new}}^{(1)})^2 I_{zz}
                       = \tfrac{1}{2} \frac{U_z^2}{I_{zz}}.
-\]
+$$
 
 ---
 
-## 4. Computing \( U_z \) and \( I_{zz} \)
+## 4. Computing  $U_z$ and $I_{zz}$
 
 ### Binary trait (logistic)
-Let \( p = \sigma(X\beta) \), \( W = \operatorname{diag}(p(1-p)) \).
-\[
+Let $p = \sigma(X\beta)$, $W = \operatorname{diag}(p(1-p))$.
+$$
 U_z = z^\top (y - p), \qquad
 I_{zz} = z^\top W z.
-\]
+$$
 Hence
-\[
+$$
 \Delta \mathcal{I}(z)
    = \tfrac{1}{2}\frac{(z^\top(y-p))^2}{z^\top W z}.
-\]
+$$
 
 ### Linear trait
-\[
+$$
 U_z = z^\top (y - X\beta), \qquad
 I_{zz} = \frac{z^\top z}{\sigma^2},
 \quad
 \Delta \mathcal{I}(z)
    = \tfrac{1}{2}\frac{(z^\top(y - X\beta))^2}{z^\top z}.
-\]
+$$
 
 These require only vector operations—no full model refits.
 
@@ -88,35 +88,35 @@ These require only vector operations—no full model refits.
 ## 5. Interaction Generation
 
 ### 5.1 Apriori growth
-For \( K \)-way interactions:
-\[
+For $K$-way interactions:
+$$
 z_{(j_1,\dots,j_K)} = \prod_{k=1}^K x_{j_k}.
-\]
-Candidates at order \( K+1 \) are formed only from frequent or high-information subsets at order \( K \).
+$$
+Candidates at order $K+1$ are formed only from frequent or high-information subsets at order $K$.
 
 ### 5.2 Pruning criteria
 - **Subset pruning:** drop any tuple whose all (K−1) subsets are not retained.
-- **Variance pruning:** discard tuples with low variance \( \mathrm{Var}(z) < \epsilon_v \).
-- **MAF filter:** remove SNPs with minor allele frequency below threshold \( \epsilon_{maf} \).
+- **Variance pruning:** discard tuples with low variance $\mathrm{Var}(z) < \epsilon_v$.
+- **MAF filter:** remove SNPs with minor allele frequency below threshold $\epsilon_{maf}$.
 
 ---
 
 ## 6. Adaptive Order Selection
 
-FIGHI automatically determines a practical upper limit \( K_{\max} \) through an *information ratio* rule:
+FIGHI automatically determines a practical upper limit $K_{\max}$ through an *information ratio* rule:
 
-\[
+$$
 r_K = \frac{\sum_{k'=1}^{K} \Delta \mathcal{I}_{k'}}%
             {\sum_{k'=1}^{K_{\max}^{\text{theor}}} \Delta \mathcal{I}_{k'}}.
-\]
+$$
 
-Stop increasing \( K \) if \( r_K > \tau \) (default 0.95).  
-A theoretical \( K_{\max}^{\text{theor}} \) can be estimated from sample size \( N \), MAF distribution, and a target detectable odds ratio \( \text{OR}_0 \):
+Stop increasing $K$ if $r_K > \tau$ (default 0.95).  
+A theoretical $K_{\max}^{\text{theor}}$ can be estimated from sample size $N$, MAF distribution, and a target detectable odds ratio $\text{OR}_0$:
 
-\[
+$$
 K_{\max}^{\text{theor}} \approx
 \max \{ K : N \cdot \mathrm{MAF}_{\min}^K \cdot (\log \text{OR}_0)^2 \ge z_{1-\alpha/2}^2 \}.
-\]
+$$
 
 This is implemented in `adaptive.py:planner_max_K`.
 
@@ -125,19 +125,19 @@ This is implemented in `adaptive.py:planner_max_K`.
 ## 7. Aggregation: SNP-level Feature Information
 
 After exploring all edges,
-for each SNP \( s \) appearing in interactions \( \mathcal{E}(s) \):
+for each SNP $s$ appearing in interactions $\mathcal{E}(s)$:
 
-\[
+$$
 \text{FI}_{\text{main}}(s) = \sum_{e \in \mathcal{E}(s),\,|e|=1} \Delta\mathcal{I}(e),
 \quad
 \text{FI}_{\text{interact}}(s) = \sum_{e \in \mathcal{E}(s),\,|e|>1} \Delta\mathcal{I}(e),
-\]
+$$
 and the total contribution:
-\[
+$$
 \text{FI}_{\text{total}}(s) = \text{FI}_{\text{main}}(s) + \text{FI}_{\text{interact}}(s).
-\]
+$$
 
-Ranks are computed by descending \(\text{FI}_{\text{total}}\).
+Ranks are computed by descending $\text{FI}_{\text{total}}$.
 
 ---
 
@@ -155,14 +155,14 @@ Thus, FIGHI provides the *score-test analogue* of the LRT, yielding comparable r
 
 ## 9. Output as Hypergraph
 
-Each retained tuple \( e = \{s_1,\dots,s_K\} \) becomes a **hyperedge** in \( H=(V,E) \), where \( V \) are SNPs.  
+Each retained tuple $e = \{s_1,\dots,s_K\}$ becomes a **hyperedge** in $H=(V,E)$, where $V$ are SNPs.  
 Weights correspond to FI gain.
 
 Adjacency tensors or incidence matrices can be constructed as:
 
-\[
+$$
 A_{ij} = \sum_{e\ni i,j} w_e, \quad w_e = \Delta\mathcal{I}(e).
-\]
+$$
 
 Exports:
 - GML for Gephi/NetworkX
@@ -175,36 +175,36 @@ Exports:
 
 Under the permutation framework (Westfall–Young):
 
-1. Shuffle phenotype \( y^{(\pi)} \)
+1. Shuffle phenotype $y^{(\pi)}$
 2. Re-run FI pipeline
-3. Record max FI per order \( K \)
-4. Estimate empirical \( p\_e = \Pr_{\pi}(\text{FI}_{\pi} \ge \text{FI}_{\text{obs}}) \)
+3. Record max FI per order $K$
+4. Estimate empirical $p\_e = \Pr_{\pi}(\text{FI}_{\pi} \ge \text{FI}_{\text{obs}})$
 
 ---
 
 ## 11. Complexity Analysis
 
 Let:
-- \( N \): samples,
-- \( P \): retained SNPs,
-- \( K \): max interaction order,
-- \( M_K \): number of surviving tuples at order \( K \).
+- $N$: samples,
+- $P$: retained SNPs,
+- $K$: max interaction order,
+- $M_K$: number of surviving tuples at order $K$.
 
 Rough complexity:
-\[
+$$
 O\!\left(\sum_{K=1}^{K_{\max}} M_K N \right),
 \quad
 M_K \ll \binom{P}{K} \text{ due to pruning}.
-\]
+$$
 
-Memory: \(O(N)\) if each feature computed on-the-fly (chunked vector product).
+Memory: $O(N)$ if each feature computed on-the-fly (chunked vector product).
 
 ---
 
 ## 12. Interpretation
 
 FI-gain correlates with potential **predictive stability** and **causal relevance**:
-- High \(\Delta \mathcal{I}\): strong evidence that a combination explains phenotype variance beyond marginals.
+- High $\Delta \mathcal{I}$: strong evidence that a combination explains phenotype variance beyond marginals.
 - Comparing FI_main vs. FI_interact distinguishes additive vs. epistatic signal.
 - Aggregated FI profiles can feed downstream enrichment or polygenic risk estimation.
 

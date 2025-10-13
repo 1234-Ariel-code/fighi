@@ -68,7 +68,7 @@ $$
 
 ### Binary Trait (Logistic)
 
-Let $p = \sigma(X\beta)$, $W = \operatorname{diag}(p(1-p))$:
+Let $p = \sigma(X\beta)$, $W = \mathrm{diag}(p(1-p))$:
 
 $$
 U_z = z^\top (y - p), \qquad I_{zz} = z^\top W z.
@@ -120,16 +120,16 @@ FIGHI automatically determines a practical upper limit $K_{\max}$ via an *inform
 
 $$
 r_K = \frac{\sum_{k'=1}^{K} \Delta \mathcal{I}_{k'}}%
-            {\sum_{k'=1}^{K_{\max}^{\text{theor}}} \Delta \mathcal{I}_{k'}}.
+            {\sum_{k'=1}^{K_{\max}^{\mathrm{theor}}} \Delta \mathcal{I}_{k'}}.
 $$
 
 Stop increasing $K$ if $r_K > \tau$ (default 0.95).  
 
-A theoretical upper bound $K_{\max}^{\text{theor}}$ can be estimated from sample size $N$, minor allele frequency (MAF), and a target detectable odds ratio $\text{OR}_0$:
+A theoretical upper bound $K_{\max}^{\mathrm{theor}}$ can be estimated from sample size $N$, minor allele frequency (MAF), and a target detectable odds ratio $\mathrm{OR}_0$:
 
 $$
-K_{\max}^{\text{theor}} \approx
-\max \left\{ K : N \cdot \mathrm{MAF}_{\min}^K \cdot (\log \text{OR}_0)^2 \ge z_{1-\alpha/2}^2 \right\}.
+K_{\max}^{\mathrm{theor}} \approx
+\max \{ K : N \cdot \mathrm{MAF}_{\min}^K \cdot (\log \mathrm{OR}_0)^2 \ge z_{1-\alpha/2}^2 \}.
 $$
 
 This is implemented in `adaptive.py:planner_max_K`.
@@ -142,17 +142,17 @@ After exploring all edges,
 for each SNP $s$ appearing in interactions $\mathcal{E}(s)$:
 
 $$
-\text{FI}_{\text{main}}(s) = \sum_{e \in \mathcal{E}(s),\,|e|=1} \Delta\mathcal{I}(e),
+\mathrm{FI}_{\mathrm{main}}(s) = \sum_{e \in \mathcal{E}(s),\,|e|=1} \Delta\mathcal{I}(e),
 \quad
-\text{FI}_{\text{interact}}(s) = \sum_{e \in \mathcal{E}(s),\,|e|>1} \Delta\mathcal{I}(e),
+\mathrm{FI}_{\mathrm{interact}}(s) = \sum_{e \in \mathcal{E}(s),\,|e|>1} \Delta\mathcal{I}(e),
 $$
 and the total contribution:
 
 $$
-\text{FI}_{\text{total}}(s) = \text{FI}_{\text{main}}(s) + \text{FI}_{\text{interact}}(s).
+\mathrm{FI}_{\mathrm{total}}(s) = \mathrm{FI}_{\mathrm{main}}(s) + \mathrm{FI}_{\mathrm{interact}}(s).
 $$
 
-Ranks are computed by descending $\text{FI}_{\text{total}}$.
+Ranks are computed by descending $\mathrm{FI}_{\mathrm{total}}$.
 
 ---
 
@@ -161,7 +161,7 @@ Ranks are computed by descending $\text{FI}_{\text{total}}$.
 | Method | Statistic | Needs Model Refit? | Notes |
 |---------|------------|--------------------|-------|
 | Likelihood-ratio | $2(\ell_1-\ell_0)$ | ✅ Yes | Full logistic regression |
-| Wald | $\hat{\beta}^2 / \operatorname{Var}(\hat{\beta})$ | ✅ Yes |  |
+| Wald | $\hat{\beta}^2 / \mathrm{Var}(\hat{\beta})$ | ✅ Yes |  |
 | Score (FIGHI) | $U_z^2 / I_{zz}$ | ❌ No | One-step Fisher-information test |
 
 Thus, **FIGHI** provides the *score-test analogue* of the LRT, yielding comparable ranking under small-effect assumptions but at much lower computational cost.
@@ -193,7 +193,7 @@ Under the permutation framework (Westfall–Young):
 1. Shuffle phenotype $y^{(\pi)}$  
 2. Re-run FI pipeline  
 3. Record max FI per order $K$  
-4. Estimate empirical $p_e = \Pr_{\pi}(\text{FI}_{\pi} \ge \text{FI}_{\text{obs}})$
+4. Estimate empirical $p_e = \Pr_{\pi}(\mathrm{FI}_{\pi} \ge \mathrm{FI}_{\mathrm{obs}})$
 
 ---
 
@@ -221,7 +221,7 @@ Memory: $O(N)$ if each feature is computed on-the-fly (chunked vector product).
 
 FI-gain correlates with potential **predictive stability** and **causal relevance**:
 - High $\Delta \mathcal{I}$: strong evidence that a combination explains phenotype variance beyond marginals.  
-- Comparing FI$_{\text{main}}$ vs FI$_{\text{interact}}$ distinguishes additive vs epistatic signal.  
+- Comparing FI$_{\mathrm{main}}$ vs FI$_{\mathrm{interact}}$ distinguishes additive vs epistatic signal.  
 - Aggregated FI profiles can feed downstream enrichment or polygenic risk estimation.
 
 ---

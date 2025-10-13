@@ -341,6 +341,6 @@ For full derivations and equations, see [docs/THEORY.md](docs/THEORY.md)
 
 
 <p align="center">
-  <img src="docs/IMAGES/fighi_cover.png" width="400" alt="FIGHI protocol sketch"/>
+  <img src="docs/IMAGES/fighi_cover.png" width="200" alt="FIGHI protocol sketch"/>
 </p>
 

@@ -34,7 +34,7 @@ Combinatorial interaction searches explode in cost. FIGHI sidesteps this by:
 ---
 
 ```bash
-FIGHI/
+fighi/
 ├─ fighi_ext/                     # Python package + scripts
 │  ├─ __init__.py
 │  ├─ adaptive.py

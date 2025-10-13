@@ -1,5 +1,0 @@
-usage: run_cli.py [-h] --csv CSV --pheno PHENO [--trait {binary,linear}]
-                  --outdir OUTDIR [--max_order MAX_ORDER]
-                  [--target_or TARGET_OR]
-run_cli.py: error: unrecognized arguments: --kmax 4
-srun: error: mg4: task 0: Exited with exit code 2

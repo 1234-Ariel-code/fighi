@@ -12,4 +12,4 @@ license = {text = "MIT"}
 dependencies = ["numpy","pandas","scipy","matplotlib","statsmodels"]
 
 [project.urls]
-Homepage = "https://github.com/<you>/FIGHI"
+Homepage = "https://github.com/1234-Ariel-code/FIGHI"

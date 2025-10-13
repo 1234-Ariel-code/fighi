@@ -18,21 +18,21 @@ This reframing allows interaction discovery without refitting full models at eac
 ## 2. Model Setting
 
 Let:
-- \( X \in \mathbb{R}^{n \times p} \) be the standardized genotype matrix  
+- $X \in \mathbb{R}^{n \times p}$ be the standardized genotype matrix  
   (rows = individuals, columns = SNPs encoded as 0, 1, 2)
-- \( y \in \{0,1\}^n \) (binary trait) or \( y \in \mathbb{R}^n \) (continuous trait)
-- \( f_\beta(x) \) the model mean (logistic or linear)
+- $y \in \{0,1\}^n$ (binary trait) or $y \in \mathbb{R}^n$ (continuous trait)
+- $f_\beta(x)$ the model mean (logistic or linear)
 
 ### 2.1 Logistic trait
-\[
+$$
 \Pr(y_i = 1 \mid x_i) = \sigma(x_i^\top \beta)
 = \frac{1}{1 + e^{-x_i^\top \beta}}.
-\]
+$$
 
 ### 2.2 Linear trait
-\[
+$$
 y_i = x_i^\top \beta + \varepsilon_i, \quad \varepsilon_i \sim \mathcal{N}(0, \sigma^2).
-\]
+$$
 
 ---
 

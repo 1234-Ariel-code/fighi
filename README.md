@@ -2,7 +2,7 @@
 FIGHI: Fisher-Information–Guided Hyper-interaction Inference for genome-wide epistasis discovery, summaries, and hypergraph outputs.
 
 <p align="center">
-  <img src="docs/IMAGES/fighi_cover.png" width="600" alt="FIGHI protocol sketch"/>
+  <img src="docs/IMAGES/fighi_cover.png" width="400" alt="FIGHI protocol sketch"/>
 </p>
 
 **FIGHI** is a fast, memory-aware method to discover **SNP–SNP (and higher-order) interactions** from genotype × phenotype data. It uses score-test approximations to **Fisher Information gain** to rank multi-locus combinations without fitting an enormous number of full models.

@@ -186,7 +186,7 @@ python fighi_ext/run_cli.py \
 
 ### 3) Annotation & enrichment (optional)
 
-# SNP→Gene via cS2G or g:Profiler; add Gene/Pathway columns
+####### SNP→Gene via cS2G or g:Profiler; add Gene/Pathway columns
 python fighi_ext/annotate_fighi_features.py \
   --feature_csv fighi_ext/fighi_out/fighi_feature_scores.csv \
   --cs2g_dir fighi_ext/cS2G_1000GEUR \

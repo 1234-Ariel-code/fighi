@@ -200,7 +200,7 @@ Under the permutation framework (Westfall–Young):
    Estimate empirical value:
 
    $$
-   p_e = \Pr_{\pi}\!\left(\mathrm{FI}_{\pi} \ge \mathrm{FI}_{\mathrm{obs}}\right)
+   p_e = \Pr_{\pi}\!\left(FI_{\pi} \ge FI_{obs}\right)
    $$
 
 

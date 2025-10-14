@@ -157,25 +157,6 @@ $$
 
 Ranks are computed by descending $\mathrm{FI}_{\text{total}}$.
 
-
-## 7. Aggregation: SNP-Level Feature Information
-
-After exploring all edges,  
-for each SNP $s$ appearing in interactions $\mathcal{E}(s)$:
-
-$$
-\mathrm{FI}_{\mathrm{main}}(s) = \sum_{e \in \mathcal{E}(s),\,|e|=1} \Delta\mathcal{I}(e),
-\quad
-\mathrm{FI}_{\mathrm{interact}}(s) = \sum_{e \in \mathcal{E}(s),\,|e|>1} \Delta\mathcal{I}(e),
-$$
-and the total contribution:
-
-$$
-\mathrm{FI}_{\mathrm{total}}(s) = \mathrm{FI}_{\mathrm{main}}(s) + \mathrm{FI}_{\mathrm{interact}}(s).
-$$
-
-Ranks are computed by descending $\mathrm{FI}_{\mathrm{total}}$.
-
 ---
 
 ## 8. Connection to Classical Tests
@@ -242,8 +223,9 @@ Memory: $O(N)$ if each feature is computed on-the-fly (chunked vector product).
 ## 12. Interpretation
 
 FI-gain correlates with potential **predictive stability** and **causal relevance**:
-- High $\Delta \mathcal{I}$: strong evidence that a combination explains phenotype variance beyond marginals.  
-- Comparing FI$_{\mathrm{main}}$ vs FI$_{\mathrm{interact}}$ distinguishes additive vs epistatic signal.  
+
+- High $\Delta \mathcal{I}$ — strong evidence that a combination explains phenotype variance beyond marginals.  
+- Comparing $\mathrm{FI}_{\text{main}}$ vs. $\mathrm{FI}_{\text{interact}}$ distinguishes additive vs. epistatic signal.  
 - Aggregated FI profiles can feed downstream enrichment or polygenic risk estimation.
 
 ---

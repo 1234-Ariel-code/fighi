@@ -185,24 +185,17 @@ out/
 
 #### Recommended Parameter Settings
 
-Parameter	Description	Suggested Value
-```bash
---prescreen_top_m	number of SNPs to retain after global prescreen	5000–10000
---batch_size	SNPs per job	1000
---halo	overlap between batches	200
---anchors	global top SNPs included in every batch	200
---max_order	maximum interaction order	3–4
---col_block	SNPs read at once during prescreen	800
---row_chunksize	row chunk size for streaming	50,000
-```
+<p align="center">
+  <img src="docs/IMAGES/Parameter.png" width="600" alt="FIGHI protocol sketch"/>
+</p>
+
 Adjust these based on dataset size and cluster memory (e.g., 120–180 GB RAM per job).
 
 #### Why It Works
-- Problem	Naive Solution	FIGHI Solution
-- Memory overload	Truncate dataset	Streaming prescreen (no full load)
-- Lost cross-chunk interactions	Simple split by index	Overlapping + anchored batches
-- Missing global dependencies	Run per batch only	Final reconciliation pass
-- Unstable runtime	Unpredictable	Deterministic 1000-SNP workloads
+
+<p align="center">
+  <img src="docs/IMAGES/Advantages.png" width="600" alt="FIGHI protocol sketch"/>
+</p>
 
 This architecture ensures:
 

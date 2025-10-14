@@ -63,7 +63,7 @@ fighi/
 
 ### Option A: local (recommended while developing)
 ```bash
-git clone https://github.com/<you>/FIGHI.git
+git clone https://github.com/1234-Ariel-code/FIGHI.git
 cd FIGHI
 # (optional) conda
 conda env create -f environment.yml
@@ -132,7 +132,7 @@ python fighi_ext/run_cli.py \
 
 ## Slurm (HPC)
 
-A ready job is in fighi_ext/examples/demo_slurm.job. It supports a single disease tag used everywhere, saves outputs in fighi_ext/fighi_out, and exports thread envs. See docs/QUICKSTART.md for the complete script and notes.
+A ready job is in fighi_ext/fighi_job.slurm It supports a single disease tag used everywhere, saves outputs in fighi_ext/fighi_out, and exports thread envs. See docs/ALGORITHM.md for the complete script and notes.
 
 ## Method in 30 seconds
 
@@ -222,7 +222,7 @@ python fighi_ext/annotate_fighi_features.py \
 
 ### 4) Slurm example
 
-See fighi_ext/examples/demo_slurm.job. One line to set disease:
+See fighi_ext/fighi_job.slurm One line to set disease:
 
 DISEASE_NAME="CD"
 

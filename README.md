@@ -78,7 +78,7 @@ export PYTHONPATH="$(pwd):${PYTHONPATH:-}"
 pip install -e .
 ```
 
-## Quick start (see doc/QUICKSTART.md)
+## Quick start (see [docs/QUICKSTART.md](docs/QUICKSTART.md))
 
 Minimal end-to-end on a merged CSV with phenotype column:
 
@@ -132,7 +132,7 @@ python fighi_ext/run_cli.py \
 
 ## Slurm (HPC)
 
-A ready job is in fighi_ext/fighi_job.slurm It supports a single disease tag used everywhere, saves outputs in fighi_ext/fighi_out, and exports thread envs. See docs/ALGORITHM.md for the complete script and notes.
+A ready job is in fighi_ext/fighi_job.slurm It supports a single disease tag used everywhere, saves outputs in fighi_ext/fighi_out, and exports thread envs. See [docs/ALGORITHM.md](docs/ALGORITHM.md) for the complete script and notes.
 
 ## Method in 30 seconds
 
@@ -144,7 +144,7 @@ A ready job is in fighi_ext/fighi_job.slurm It supports a single disease tag use
 
 - Optional Westfall–Young controls family-wise error for permutations.
 
-- Full derivations and references: docs/THEORY.md.
+- Full derivations and references: [docs/THEORY.md](docs/THEORY.md).
 
 ## Cite
 
@@ -166,7 +166,7 @@ MIT (see LICENSE).
 
 ## Contributing
 
-Issues and PRs welcome! Please see docs/CONTRIBUTING.md & docs/CODE_OF_CONDUCT.md.
+Issues and PRs welcome! Please see [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) & [docs/CODE_OF_CONDUCT.md](docs/CODE_OF_CONDUCT.md).
 
 
 For full derivations and equations, see [docs/THEORY.md](docs/THEORY.md)

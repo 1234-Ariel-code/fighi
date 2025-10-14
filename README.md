@@ -186,7 +186,7 @@ out/
 #### Recommended Parameter Settings
 
 <p align="center">
-  <img src="docs/IMAGES/Parameter.png" width="600" alt="FIGHI protocol sketch"/>
+  <img src="docs/IMAGES/Parameter.png" width="900" alt="FIGHI protocol sketch"/>
 </p>
 
 Adjust these based on dataset size and cluster memory (e.g., 120–180 GB RAM per job).
@@ -194,7 +194,7 @@ Adjust these based on dataset size and cluster memory (e.g., 120–180 GB RAM pe
 #### Why It Works
 
 <p align="center">
-  <img src="docs/IMAGES/Advantages.png" width="600" alt="FIGHI protocol sketch"/>
+  <img src="docs/IMAGES/Advantages.png" width="900" alt="FIGHI protocol sketch"/>
 </p>
 
 This architecture ensures:

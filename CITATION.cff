@@ -2,17 +2,17 @@ cff-version: 1.2.0
 title: "FIGHI: Fisher-Information–Guided Hyperinteraction Inference"
 message: "If you use this software, please cite it."
 authors:
-  - family-names: Your
-    given-names: Name
-  - family-names: Collaborator
-    given-names: A.
+  - family-names: Kemogne K.
+    given-names: Ariel G.
+  - family-names: Long Lab
+    given-names: QL.
 license: MIT
-repository-code: "https://github.com/<you>/FIGHI"
+repository-code: "https://github.com/1234-Ariel-code/FIGHI"
 keywords: [genomics, epistasis, GWAS, interactions, Fisher information, hypergraph]
 preferred-citation:
   type: article
   title: "FIGHI: Fisher-Information–Guided Hyperinteraction Inference for Epistasis Discovery"
   authors:
-    - family-names: Your
-      given-names: Name
+    - family-names: Kemogne K.
+      given-names: Ariel G.
   year: 2025

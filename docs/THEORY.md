@@ -202,17 +202,17 @@ Under the permutation framework (Westfall–Young):
 
 ## 11. Complexity Analysis
 
-Let:
-- $N$: samples,  
-- $P$: retained SNPs,  
-- $K$: max interaction order,  
-- $M_K$: number of surviving tuples at order $K$.
+Let:  
+- $N$: samples  
+- $P$: retained SNPs  
+- $K$: maximum interaction order  
+- $M_K$: number of surviving tuples at order $K$
 
 Rough complexity:
 
 $$
-O\!\left(\sum_{K=1}^{K_{\max}} M_K N \right),
-\quad
+O\!\left(\sum_{K=1}^{K_{\max}} M_K N\right),
+\qquad
 M_K \ll \binom{P}{K} \text{ due to pruning.}
 $$
 

@@ -157,7 +157,7 @@ This final step ensures that no cross-batch interactions are lost.
 
 #### Full Orchestration via SLURM
 
-The entire process can be automated using the fighi_orchestrate.slurm script:
+The entire process can be automated using the fighi_ext/fighi_orchestrate.slurm script:
 ```bash
 sbatch fighi_orchestrate.slurm
 ```

@@ -193,17 +193,11 @@ $$
 
 Under the permutation framework (Westfall–Young):
 
-1. Shuffle phenotype $y^{(\pi)}$  
+1. Shuffle the phenotype y^(π)  
 2. Re-run the FI pipeline  
-3. Record maximum FI per order $K$  
-
-   Estimate empirical value:
-
-   $$
-   p_e = \Pr_{\pi}\!\left(FI_{\pi} \ge FI_{obs}\right)
-   $$
-
-
+3. Record the maximum FI per order K  
+4. Estimate the empirical p-value as:  
+   p_e = Probability(FI_π ≥ FI_obs)
 
 ---
 

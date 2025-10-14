@@ -225,7 +225,7 @@ Memory: $O(N)$ if each feature is computed on-the-fly (chunked vector product).
 FI-gain correlates with potential **predictive stability** and **causal relevance**:
 
 - High $\Delta \mathcal{I}$ — strong evidence that a combination explains phenotype variance beyond marginals.  
-- Comparing $\mathrm{FI}_{\text{main}}$ vs. $\mathrm{FI}_{\text{interact}}$ distinguishes additive vs. epistatic signal.  
+- Comparing $FI_{main}$ vs. $FI_{interact}$ distinguishes additive vs. epistatic signal.  
 - Aggregated FI profiles can feed downstream enrichment or polygenic risk estimation.
 
 ---

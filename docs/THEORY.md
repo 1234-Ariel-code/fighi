@@ -119,6 +119,11 @@ Candidates at order $K+1$ are formed only from frequent or high-information subs
 FIGHI automatically determines a practical upper limit $K_{\max}$ via an *information ratio* rule:
 
 $$
+r_K = \dfrac{\sum_{k'=1}^{K} \Delta \mathcal{I}_{k'}}{\sum_{k'=1}^{K_{\max}^{\text{theor}}} \Delta \mathcal{I}_{k'}}
+$$
+
+ 
+$$
 r_K = \frac{\sum_{k'=1}^{K} \Delta \mathcal{I}_{k'}}%
             {\sum_{k'=1}^{K_{\max}^{\mathrm{theor}}} \Delta \mathcal{I}_{k'}}.
 $$

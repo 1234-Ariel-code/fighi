@@ -122,12 +122,6 @@ $$
 r_K = \dfrac{\sum_{k'=1}^{K} \Delta \mathcal{I}_{k'}}{\sum_{k'=1}^{K_{\max}^{\text{theor}}} \Delta \mathcal{I}_{k'}}
 $$
 
- 
-$$
-r_K = \frac{\sum_{k'=1}^{K} \Delta \mathcal{I}_{k'}}%
-            {\sum_{k'=1}^{K_{\max}^{\mathrm{theor}}} \Delta \mathcal{I}_{k'}}.
-$$
-
 Stop increasing $K$ if $r_K > \tau$ (default 0.95).  
 
 A theoretical upper bound $K_{\max}^{\mathrm{theor}}$ can be estimated from sample size $N$, minor allele frequency (MAF), and a target detectable odds ratio $\mathrm{OR}_0$:

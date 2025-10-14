@@ -141,6 +141,29 @@ After exploring all edges,
 for each SNP $s$ appearing in interactions $\mathcal{E}(s)$:
 
 $$
+\mathrm{FI}_{\text{main}}(s)
+ = \sum_{e \in \mathcal{E}(s),\,|e|=1} \Delta \mathcal{I}(e),
+\qquad
+\mathrm{FI}_{\text{interact}}(s)
+ = \sum_{e \in \mathcal{E}(s),\,|e|>1} \Delta \mathcal{I}(e)
+$$
+
+and the total contribution:
+
+$$
+\mathrm{FI}_{\text{total}}(s)
+ = \mathrm{FI}_{\text{main}}(s) + \mathrm{FI}_{\text{interact}}(s)
+$$
+
+Ranks are computed by descending $\mathrm{FI}_{\text{total}}$.
+
+
+## 7. Aggregation: SNP-Level Feature Information
+
+After exploring all edges,  
+for each SNP $s$ appearing in interactions $\mathcal{E}(s)$:
+
+$$
 \mathrm{FI}_{\mathrm{main}}(s) = \sum_{e \in \mathcal{E}(s),\,|e|=1} \Delta\mathcal{I}(e),
 \quad
 \mathrm{FI}_{\mathrm{interact}}(s) = \sum_{e \in \mathcal{E}(s),\,|e|>1} \Delta\mathcal{I}(e),

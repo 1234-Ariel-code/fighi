@@ -166,7 +166,7 @@ MIT (see LICENSE).
 
 ## Contributing
 
-Issues and PRs welcome! Please see CONTRIBUTING.md & CODE_OF_CONDUCT.md.
+Issues and PRs welcome! Please see docs/CONTRIBUTING.md & docs/CODE_OF_CONDUCT.md.
 
 
 For full derivations and equations, see [docs/THEORY.md](docs/THEORY.md)

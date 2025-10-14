@@ -78,7 +78,8 @@ export PYTHONPATH="$(pwd):${PYTHONPATH:-}"
 pip install -e .
 ```
 
-## Quick start (see [docs/QUICKSTART.md](docs/QUICKSTART.md))
+## Quick start 
+(see [docs/QUICKSTART.md](docs/QUICKSTART.md))
 
 Minimal end-to-end on a merged CSV with phenotype column:
 

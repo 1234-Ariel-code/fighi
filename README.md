@@ -78,7 +78,7 @@ export PYTHONPATH="$(pwd):${PYTHONPATH:-}"
 pip install -e .
 ```
 
-## Quick start
+## Quick start (see doc/QUICKSTART.md)
 
 Minimal end-to-end on a merged CSV with phenotype column:
 
@@ -144,7 +144,7 @@ A ready job is in fighi_ext/fighi_job.slurm It supports a single disease tag use
 
 - Optional Westfall–Young controls family-wise error for permutations.
 
-- Full derivations and references: docs/ALGORITHM.md.
+- Full derivations and references: docs/THEORY.md.
 
 ## Cite
 
@@ -164,7 +164,9 @@ If you use FIGHI, please cite us (see also CITATION.cff):
 
 MIT (see LICENSE).
 
+## Contributing
 
+Issues and PRs welcome! Please see CONTRIBUTING.md & CODE_OF_CONDUCT.md.
 
 
 For full derivations and equations, see [docs/THEORY.md](docs/THEORY.md)

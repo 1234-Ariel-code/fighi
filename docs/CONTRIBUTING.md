@@ -1,10 +1,5 @@
 ```yaml
 
----
-
-## 7) `CONTRIBUTING.md`
-
-```markdown
 # Contributing
 
 Thanks for considering contributions! Ways to help:
@@ -14,7 +9,7 @@ Thanks for considering contributions! Ways to help:
 - Integrate additional annotation sources.
 
 ## Dev setup
-```bash
+
 git clone https://github.com/1234-Ariel-code/FIGHI.git
 cd FIGHI
 conda env create -f environment.yml
@@ -22,6 +17,7 @@ conda activate fighi
 pip install -e .[dev]
 pre-commit install
 ```
+```markdown
 Tests & style
 
 Use ruff/flake8 for linting; pytest for tests.

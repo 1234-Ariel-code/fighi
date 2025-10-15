@@ -231,10 +231,4 @@ FI-gain correlates with potential **predictive stability** and **causal relevanc
 
 ---
 
-## 13. References
-
-Kemogne, A.G. et al. (2025). *FIGHI: Fisher-Information–Guided Hyperinteraction Inference for Epistasis Discovery.*
-
----
-
 *This document serves as the mathematical appendix to the FIGHI repository.*

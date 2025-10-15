@@ -31,9 +31,9 @@ export NUMEXPR_NUM_THREADS="${THREADS}"
 # --------------------------
 # NOTE: Data is still in /work/... but all code & outputs stay here
 DATA_DIR="/work/long_lab/for_Ariel/files"
-TPED="${DATA_DIR}/${DISEASE_NAME}_origin.tped"
-TFAM="${DATA_DIR}/${DISEASE_NAME}_origin.tfam"
-PHEN_FILE="${DATA_DIR}/${DISEASE_NAME}_origin.phen"
+TPED="${DATA_DIR}/${DISEASE_NAME}.tped"
+TFAM="${DATA_DIR}/${DISEASE_NAME}.tfam"
+PHEN_FILE="${DATA_DIR}/${DISEASE_NAME}.phen"
 GENO_NAMED="${DATA_DIR}/${DISEASE_NAME}_filtered_named.csv"
 MERGED_CSV="${DATA_DIR}/${DISEASE_NAME}_merged.csv"
 

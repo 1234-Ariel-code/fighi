@@ -1,0 +1,11 @@
+{
+  "n_samples": 60,
+  "n_snps": 8,
+  "phenotype": "case",
+  "mean_FI_gain": 0.6125407394557761,
+  "max_order": 4,
+  "n_significant_interactions": 28,
+  "mean_stability": null,
+  "runtime_minutes": null,
+  "version": "0.3.2"
+}

@@ -268,6 +268,7 @@ fighi/
 |  ├─ fighi_orchestrate.slurm     # complete orchestrator (recommended)
 ├─ examples/
 │  └─ (tiny toy data / minimal commands)
+|  ├─ fighi_out                   # outputs run on simulated data
 ├─ docs/
 │  ├─ README_theory.md            # full math/theory (we drafted earlier)
 │  └─ assets/

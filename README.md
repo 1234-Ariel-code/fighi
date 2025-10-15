@@ -376,7 +376,7 @@ If you use FIGHI, please cite us (see also CITATION.cff):
 ```bash
 @article{fighi2025,
   title={FIGHI: Fisher-Information–Guided Hyperinteraction Inference for Epistasis Discovery},
-  author={Ariel G. Kemogne K. et al},
+  author={Long Lab},
   journal={bioRxiv},
   year={2025},
   doi={10.1101/xxxxx}

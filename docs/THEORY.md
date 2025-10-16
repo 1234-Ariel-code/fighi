@@ -227,8 +227,6 @@ FI-gain correlates with potential **predictive stability** and **causal relevanc
 - Comparing $FI_{main}$ vs. $FI_{interact}$ distinguishes additive vs. epistatic signal.  
 - Aggregated FI profiles can feed downstream enrichment or polygenic risk estimation.
 
----
-
 #### Higher-Order Fisher Information Interpretation
 
 In **FIGHI**, the classical Fisher Information — defined as the expected curvature of the log-likelihood — serves as the foundation for quantifying how much *stability* or *certainty* a model gains when new predictors are introduced.  

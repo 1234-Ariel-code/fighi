@@ -15,7 +15,7 @@ Traditional regression or likelihood-ratio tests become computationally prohibit
 
 This reframing enables interaction discovery without refitting full models at each step.
 
-### Higher-Order Fisher Information Interpretation
+#### Higher-Order Fisher Information Interpretation
 
 In **FIGHI**, the classical Fisher Information — defined as the expected curvature of the log-likelihood — serves as the foundation for quantifying how much *stability* or *certainty* a model gains when new predictors are introduced.  
 While Fisher Information is intrinsically a **second-order measure** (reflecting local variance and pairwise curvature), **FIGHI** extends this principle to higher-order genomic interactions through **incremental composition of information gains**.
@@ -24,9 +24,8 @@ Instead of computing explicit high-dimensional derivatives, the framework evalua
 This iterative, score-test-based expansion effectively generalizes the second-order concept to multi-locus dependencies while remaining numerically stable and computationally tractable.  
 The process continues until the cumulative information gain saturates, yielding an **adaptive, interpretable hierarchy of interactions**.
 
----
 
-### Geometric Interpretation
+#### Geometric Interpretation
 
 From a geometric standpoint, **FIGHI** interprets each interaction as a **localized deformation in the likelihood surface** — a small directional curvature that alters how the phenotype space bends around the genotype manifold.  
 Pairwise interactions correspond to simple local curvatures (analogous to saddle points), while higher-order interactions represent **nested curvatures**, where multiple directions of change overlap and reinforce one another.
@@ -34,9 +33,8 @@ Pairwise interactions correspond to simple local curvatures (analogous to saddle
 By quantifying the incremental Fisher Information gain ($\Delta \mathcal{I}$) associated with each new combination of SNPs, **FIGHI** effectively traces the **information flow along these curvatures**, identifying regions where genotype interactions produce the steepest or most informative changes in phenotype likelihood.  
 This geometric view not only links Fisher Information to the **stability and sensitivity** of genetic effects but also provides an intuitive way to visualize **complex dependency structures** within high-dimensional genomic landscapes.
 
----
 
-### Equation Spotlight
+#### Equation Spotlight
 
 At the heart of FIGHI lies the **Fisher Information gain** formula, derived from the score-test principle:
 

@@ -2,6 +2,44 @@
 
 We seek multi-locus interactions (hyperedges) that increase Fisher Information with respect to the phenotype model.
 
+
+## Inputs
+
+```text
+   - Genotype–phenotype CSV file with:
+
+       - Phenotype column y
+
+       - Genotype columns X₁ … Xₚ
+
+       - Optional ID column
+
+   - Trait type ∈ {binary, linear}
+
+   - Maximum interaction order K_max
+
+   - Target effect size proxy (e.g. odds ratio OR₀)
+
+   - Prescreen parameters: (M, row_chunksize, col_block)
+
+   - Pruning thresholds: (ε_var, ε_maf, τ_gain)
+
+   - Optional permutation/stability settings
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 1. Screening
 Standardize each SNP; compute a simple correlation (or point-biserial). Keep top-M SNPs passing MAF threshold.
 

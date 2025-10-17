@@ -51,9 +51,11 @@ FIGHI(csv, y_name, trait, K_max, OR₀, prescreen, prune):
 <p align="center">
   <img src="docs/IMAGES/alg1.png" width="600" alt="FIGHI algo sketch"/>
 </p>
+
 <p align="center">
   <img src="docs/IMAGES/alg2.png" width="600" alt="FIGHI algo sketch"/>
 </p>
+
 <p align="center">
   <img src="docs/IMAGES/alg3.png" width="600" alt="FIGHI algo sketch"/>
 </p>

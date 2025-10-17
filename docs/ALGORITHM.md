@@ -48,29 +48,53 @@ We seek multi-locus interactions (hyperedges) that increase Fisher Information w
 ```text
 FIGHI(csv, y_name, trait, K_max, OR₀, prescreen, prune):
 ```
+<p align="center">
+  <img src="docs/IMAGES/alg1.png" width="600" alt="FIGHI algo sketch"/>
+</p>
+<p align="center">
+  <img src="docs/IMAGES/alg2.png" width="600" alt="FIGHI algo sketch"/>
+</p>
+<p align="center">
+  <img src="docs/IMAGES/alg3.png" width="600" alt="FIGHI algo sketch"/>
+</p>
 
 ## Algorithm 2 — Prescreen: Streaming Correlation-based SNP Filtering
 
 ```text
 Prescreen(csv, y_name, M, row_chunksize, col_block):
 ```
+<p align="center">
+  <img src="docs/IMAGES/alg3.png" width="600" alt="FIGHI algo sketch"/>
+</p>
 
 ## Algorithm 3 — Score-Test Statistics and Fisher Information Gain
 
 ```text
 ScoreTestStats(z, X, y, trait):
 ```
+<p align="center">
+  <img src="docs/IMAGES/alg3.png" width="600" alt="FIGHI algo sketch"/>
+</p>
 
 ## Algorithm 4 — Apriori-style Candidate Expansion with Pruning
 
 ```text
 ExpandCandidates(E, K):
 ```
+<p align="center">
+  <img src="docs/IMAGES/alg3.png" width="600" alt="FIGHI algo sketch"/>
+</p>
 
-```text
-Algorithm 5 — Practical Planner for K
-```
 
+## Algorithm 5 — Practical Planner for K
+
+<p align="center">
+  <img src="docs/IMAGES/alg3.png" width="600" alt="FIGHI algo sketch"/>
+</p>
+
+<p align="center">
+  <img src="docs/IMAGES/alg3.png" width="600" alt="FIGHI algo sketch"/>
+</p>
 
 
 

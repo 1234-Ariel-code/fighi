@@ -27,6 +27,49 @@ We seek multi-locus interactions (hyperedges) that increase Fisher Information w
    - Optional permutation/stability settings
 ```
 
+## Outputs
+
+```text
+    - Hypergraph H = (V, E) where:
+
+         - nodes V = SNPs
+
+         - edges E = discovered interactions
+
+         - weights 𝑤𝑒=ΔI(e)
+
+    - Per-SNP Fisher Information (FI) summaries
+
+    - Tables, logs, and plots
+```
+
+## Algorithm 1 — Main FIGHI Procedure
+
+```text
+FIGHI(csv, y_name, trait, K_max, OR₀, prescreen, prune):
+```
+
+## Algorithm 2 — Prescreen: Streaming Correlation-based SNP Filtering
+
+```text
+Prescreen(csv, y_name, M, row_chunksize, col_block):
+```
+
+## Algorithm 3 — Score-Test Statistics and Fisher Information Gain
+
+```text
+ScoreTestStats(z, X, y, trait):
+```
+
+## Algorithm 4 — Apriori-style Candidate Expansion with Pruning
+
+```text
+ExpandCandidates(E, K):
+```
+
+```text
+Algorithm 5 — Practical Planner for K
+```
 
 
 

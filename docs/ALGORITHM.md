@@ -49,7 +49,7 @@ We seek multi-locus interactions (hyperedges) that increase Fisher Information w
 FIGHI(csv, y_name, trait, K_max, OR₀, prescreen, prune):
 ```
 <p align="center">
-  <img src="docs/IMAGES/alg1.png" width="600" alt="FIGHI algo sketch"/>
+  <img src="IMAGES/alg1.png" width="600" alt="FIGHI algo sketch"/>
 </p>
 
 <p align="center">

@@ -1,0 +1,8 @@
+{
+  "N": 5000,
+  "P": 200,
+  "subset_pairs": 5000,
+  "spearman_fi_vs_lrt": 0.36075140537405614,
+  "pearson_fi_vs_lrt": 0.3634256779124815,
+  "true_pairs_in_subset": 2
+}

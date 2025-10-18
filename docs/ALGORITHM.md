@@ -6,40 +6,26 @@ We seek multi-locus interactions (hyperedges) that increase Fisher Information w
 ## Inputs
 
 ```text
-   - Genotype–phenotype CSV file with:
-
+- Genotype–phenotype CSV file with:
        - Phenotype column y
-
        - Genotype columns X₁ … Xₚ
-
        - Optional ID column
-
-   - Trait type ∈ {binary, linear}
-
+- Trait type ∈ {binary, linear}
    - Maximum interaction order K_max
-
    - Target effect size proxy (e.g. odds ratio OR₀)
-
    - Prescreen parameters: (M, row_chunksize, col_block)
-
    - Pruning thresholds: (ε_var, ε_maf, τ_gain)
-
-   - Optional permutation/stability settings
+   - Optional permutation/stability setting
 ```
 
 ## Outputs
 
 ```text
     - Hypergraph H = (V, E) where:
-
          - nodes V = SNPs
-
          - edges E = discovered interactions
-
          - weights 𝑤𝑒=ΔI(e)
-
     - Per-SNP Fisher Information (FI) summaries
-
     - Tables, logs, and plots
 ```
 

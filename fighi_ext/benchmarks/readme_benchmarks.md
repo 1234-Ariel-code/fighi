@@ -5,7 +5,7 @@ This benchmark suite rigorously compares FIGHI (Fisher-Information–Guided Hype
 ```text
 - PLINK --epistasis (logistic / fast epistasis)
 
-- MDR (Multifactor Dimensionality Reduction)
+- MDR (Multifactor Dimensionality Reduction), Alison A Motsinger et al. `Multifactor dimensionality reduction: An analysis strategy for modelling and detecting gene - gene interactions in human genetics and pharmacogenomics studies`
 ```
 
 It evaluates runtime, peak memory, number of pairs tested, and predictive accuracy (AUC) using the same preprocessed dataset.

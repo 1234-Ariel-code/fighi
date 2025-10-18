@@ -148,4 +148,4 @@ plt.tight_layout()
 plt.savefig(os.path.join(OUTDIR, "score_vs_lrt_qq.png"), dpi=180)
 plt.close()
 
-print("[OK] Wrote notebooks/out/* for score vs LRT.")
+print("[OK] Wrote validation/out/* for score vs LRT.")

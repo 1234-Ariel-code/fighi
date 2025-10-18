@@ -82,6 +82,4 @@ Expectation: near-linear growth with number of scanned candidates.
 ## Notes
 
 - These studies focus on **pairwise** interactions for clarity and speed. You can extend to **triples** by introducing a small set of true triples and scanning a random subset of 3-way combinations (keeping M modest).
-- For a **journal supplement**, add a short paragraph linking the **planner inequality** (detectability boundary) to the **power curves** from `power_grid.py`; reviewers love that match.
-- If you want SLURM wrappers for large REPS grids (e.g., 2000+ repetitions), I can add `*.slurm` array scripts that split workloads and aggregate CSVs in a single pass.
 ```

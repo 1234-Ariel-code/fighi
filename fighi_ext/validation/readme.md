@@ -1,4 +1,4 @@
-# FIGHI – Theory Validation Notebooks
+# FIGHI – Theory Validation 
 
 This folder contains **reproducible scripts** (headless-friendly) that validate the theoretical backbone of FIGHI.
 

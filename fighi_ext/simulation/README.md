@@ -16,7 +16,6 @@ This folder provides **reproducible simulation scripts** for the core statistica
 
 ```text
 simulation/
-└─ sim/
    ├─ common_sim.py
    ├─ type1_error.py
    ├─ power_grid.py

@@ -1,4 +1,4 @@
-# FIGHI – Simulation Studies
+# FIGHI – Simulation 
 
 This folder provides **reproducible simulation scripts** for the core statistical properties and practical behavior of FIGHI.
 

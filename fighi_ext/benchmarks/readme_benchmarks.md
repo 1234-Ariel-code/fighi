@@ -88,7 +88,7 @@ This job:
 
 ```bash
 python run_cli.py \
-  --csv CD_merged.csv --pheno case --trait binary \
+  --csv data_merged.csv --pheno case --trait binary \
   --prescreen_top_m 3000 --col_block 1000 --row_chunksize 50000 \
   --max_order 2 --write_top_cols
 ```
@@ -103,7 +103,7 @@ prescreen/top_columns.txt (list of top informative SNPs by FI gain)
 
 ```bash
 python filter_csv_by_columns.py \
-  --csv CD_merged.csv --pheno case \
+  --csv data_merged.csv --pheno case \
   --keep prescreen/top_columns.txt \
   --out cd_top3000.csv
 ```

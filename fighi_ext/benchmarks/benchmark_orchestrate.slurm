@@ -135,6 +135,16 @@ mkdir -p "${MDR_DIR}"
   --cv_folds 5 \
   --max_pairs 100000000 2> "${OUTDIR}/mdr.time"
 
+echo "========== [ACCURACY] 80/20 held-out AUC =========="
+python benchmarks/accuracy_eval.py \
+  --csv "${FILTERED_CSV}" \
+  --pheno "${PHENO}" \
+  --fighi_results "${FIGHI_OUT}/fighi_results.csv" \
+  --plink_epi "${PLINK_DIR}/epi_fast.epi.cc" \
+  --mdr_pairs "${MDR_DIR}/mdr_pairs.csv" \
+  --out_json "${OUTDIR}/accuracy.json" \
+  --top_k_fighi 50
+
 echo "========== [SUMMARY] =========="
 echo "FIGHI timing:"
 grep -E 'Elapsed|Maximum resident' "${OUTDIR}/fighi.time" || true

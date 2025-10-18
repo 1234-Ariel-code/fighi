@@ -7,7 +7,7 @@ This folder contains **reproducible scripts** (headless-friendly) that validate 
 - `validate_planner.py` – Validates the **K-planner detectability rule** (based on $N$, MAF, OR) against **empirical power** from simulations.
 - `realdata_yeast_sanity.py` – Template to check recovery of **known epistasis pairs** on yeast (supply your dataset).
 
-All scripts write outputs to `notebooks/out/`.
+All scripts write outputs to `validation/out/`.
 
 ## How to run
 ```bash

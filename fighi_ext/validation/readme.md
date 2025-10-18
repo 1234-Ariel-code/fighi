@@ -11,7 +11,7 @@ All scripts write outputs to `validation/out/`.
 
 ## How to run
 ```bash
-cd notebooks
+cd validation
 python validate_score_vs_lrt.py
 python validate_planner.py
 # optional (set paths inside first):

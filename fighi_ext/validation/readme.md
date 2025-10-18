@@ -59,6 +59,7 @@ Interpretation: recovery of known pairs, or enrichment of low p-values, provides
 - Deterministic RNG (NumPy Generator with fixed seeds)
 - Pure Python + statsmodels, scipy, numpy, pandas, matplotlib (Agg backend)
 - No internet / downloads required
+```
 
 ### Requirements
 

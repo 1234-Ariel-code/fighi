@@ -66,4 +66,4 @@ pd.DataFrame(obs_stats).to_csv(os.path.join(OUTDIR, "yeast_pairs_score.csv"), in
 with open(os.path.join(OUTDIR, "yeast_overlap_stats.json"), "w") as f:
     json.dump({"tested_pairs": len(obs_stats), "significant_hits_bonf": hits}, f, indent=2)
 
-print("[OK] Yeast sanity finished. See validate/out/")
+print("[OK] Yeast sanity finished. See validation/out/")

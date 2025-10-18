@@ -1,0 +1,5 @@
+scenario,power
+No-LD,1.0
+LD-moderate,1.0
+LD-strong,1.0
+Misspec-probit,1.0

@@ -2,6 +2,7 @@
 
 This folder provides **reproducible simulation scripts** for the core statistical properties and practical behavior of FIGHI.
 
+
 ## What’s included
 
 - **Type I Error (Null Calibration)** — `type1_error.py`  
@@ -13,7 +14,18 @@ This folder provides **reproducible simulation scripts** for the core statistica
 - **Scaling (Runtime)** — `scaling_runtime.py`  
   Wall-time vs number of SNPs P for a fixed number of scanned pairs M.
 
-All scripts write CSV + PNG into `sim/out/`.
+```text
+simulation/
+└─ sim/
+   ├─ common_sim.py
+   ├─ type1_error.py
+   ├─ power_grid.py
+   ├─ robustness_ld.py
+   ├─ scaling_runtime.py
+   └─ README.md
+```
+
+All scripts write CSV + PNG into `simulation/out/`.
 
 ## Usage
 

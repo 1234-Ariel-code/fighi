@@ -35,9 +35,9 @@ Interpretation: high Spearman ρ confirms ranking equivalence between FIGHI’s 
 ### 2) Planner (Detectability)
 
 ```text
-- planner_grid.csv – rows across $(N,\text{MAF},\text{OR})$ with columns feasible_by_rule and empirical_power
+- planner_grid.csv – rows across (N,MAF,OR) with columns feasible_by_rule and empirical_power
 - planner_heatmap.png – power heatmap for a fixed MAF slice
-- planner_curves.png – empirical power vs $N$ for several OR
+- planner_curves.png – empirical power vs N for several OR
 ```
 ```text
 Interpretation: the planner’s inequality correctly tracks the 80% power boundary; increases in $N$, MAF, and OR move the system into detectable regime.

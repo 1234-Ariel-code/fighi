@@ -26,11 +26,11 @@ benchmarks/
 # Input Data Requirements
 
 ```bash
-| File            | Description                          | Format               |
-| --------------- | ------------------------------------ | -------------------- |
+| File                | Description                          | Format               |
+| ---------------     | ------------------------------------ | -------------------- |
 | `{data}_merged.csv` | Merged phenotype + genotype CSV      | `IID,case,rs1,rs2,…` |
-| `case` column   | Binary phenotype (0=control, 1=case) | Required             |
-| SNP columns     | Dosages coded 0/1/2 (float or int)   | Required             |
+| `case` column       | Binary phenotype (0=control, 1=case) | Required             |
+| SNP columns         | Dosages coded 0/1/2 (float or int)   | Required             |
 ```
 
 # Dependencies
@@ -235,8 +235,6 @@ All times use /usr/bin/time -v
 ```
 
 ## Extending the Benchmark
-
-```text
 
 To add:
 

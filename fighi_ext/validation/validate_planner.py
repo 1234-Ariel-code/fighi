@@ -125,4 +125,4 @@ plt.tight_layout()
 plt.savefig(os.path.join(OUTDIR, "planner_curves.png"), dpi=180)
 plt.close()
 
-print("[OK] Wrote notebooks/out/* for planner validation.")
+print("[OK] Wrote validation/out/* for planner validation.")

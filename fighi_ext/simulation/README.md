@@ -73,6 +73,7 @@ Expectation: near-linear growth with number of scanned candidates.
 - Headless plotting (Agg)
 - No downloads required
 - Code is easily portable to SLURM arrays if needed
+```
 
 ```yaml
 

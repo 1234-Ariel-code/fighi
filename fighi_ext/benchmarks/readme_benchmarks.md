@@ -243,5 +243,50 @@ To add:
 - Higher orders → set --max_order 4 (if memory allows)
 ```
 
+## Reproducibility Checklist
+
+```text
+| Item                    | Description                                  | Example / Command           |          |
+| ----------------------- | -------------------------------------------- | --------------------------- | -------- |
+| **Operating System**    | Linux (ARC cluster, Rocky/Ubuntu 20.04+)     | `uname -a`                  |          |
+| **Python version**      | ≥ 3.10                                       | `python --version`          |          |
+| **Conda environment**   | Created automatically as `fighi-bench`       | `conda list`                |          |
+| **Random seed**         | Used in StratifiedShuffleSplit and MDR folds | `42`                        |          |
+| **PLINK version**       | v1.9 build Dec 2023 (auto-downloaded)        | `plink --version`           |          |
+| **MDR library version** | `scikit-mdr==0.4.4`                          | `pip show scikit-mdr`       |          |
+| **FIGHI version**       | Git commit hash (auto-readable in logs)      | `git rev-parse HEAD`        |          |
+| **Data subset**         | Prescreen top-M SNPs (`M=3000`)              | `prescreen/top_columns.txt` |          |
+| **Split ratio**         | 80/20 train/test                             | see `accuracy_eval.py`      |          |
+| **Evaluation metrics**  | ROC-AUC, Average Precision                   | `accuracy.json`             |          |
+| **Environment hash**    | SHA1 of Conda env export                     | `conda env export           | sha1sum` |
+```
+
+### To export exact environment for replication:
+
+```bash
+conda env export --no-builds > environment.yml
+sha1sum environment.yml > environment.sha1
+```
+
+### To re-run with fixed seeds (full determinism):
+
+```bash
+PYTHONHASHSEED=42
+export OMP_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+```
+
+To verify outputs:
+
+```bash
+grep -E "Elapsed|Maximum resident" benchmarks/out/*.time
+cat benchmarks/out/accuracy.json | jq .
+```
+
+```text
+With these details, any collaborator or reviewer can reproduce the benchmark, revalidate runtimes, and confirm accuracy within ±1% variation under the same TOP_M configuration.
+```
+
+
 FIGHI Benchmark Suite provides a transparent, reproducible environment to compare multi-order Fisher Information inference with traditional epistasis tools — quantifying both efficiency and biological informativeness under identical data and hardware settings. Parallel runs → convert each method block into its own SLURM script and orchestrate via afterok
 

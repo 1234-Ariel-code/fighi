@@ -1,3 +1,75 @@
+
+flowchart LR
+    %% CHANNELS
+    subgraph Channels["Lead Entry Points"]
+        WChat["Website Chat / Widget"]
+        WForm["Website Forms / Landing Pages"]
+        DHA["Digital Health Advisors (DHAs)"]
+        VAgent["Customer Support Voice Agent"]
+        Social["Social Media / Inbox"]
+        Email["Inbound Email"]
+        Scraper["Web Scraping (Local & Cloud)"]
+    end
+
+    %% INTAKE & NORMALIZATION
+    Channels --> Intake["Intake & Normalization Layer
+    - Collect event
+    - Standardize format
+    - Attach metadata"]
+
+    %% INTENT & QUALIFICATION
+    Intake --> IntentNLP["Intent + Entity Extraction
+    - Reason for contact
+    - Service type
+    - Urgency"]
+    IntentNLP --> Qualifier["Lead Qualification Engine (LQF)
+    - Ask follow-up questions if needed
+    - Build structured profile"]
+
+    %% SCORING
+    Qualifier --> Scorer["Lead Scoring
+    - Fit with VirtuClinic
+    - Urgency
+    - Booking likelihood"]
+
+    %% ROUTING
+    Scorer --> Router["Routing Engine
+    - Decide next action"]
+
+    %% ROUTE TARGETS
+    Router -->|High priority| Booking["Booking Layer
+    - Send VirtuClinic booking link
+    - Guide through practitioner/service choice"]
+    Router -->|Needs DHA| DHA_Route["DHA Handoff
+    - Suggest speaking with Digital Health Advisor
+    - Provide DHA link"]
+    Router -->|Needs human| Staff["Staff Notification
+    - Structured email summary
+    - CRM entry / shared inbox"]
+    Router -->|Nurture| Nurture["Nurture & Follow-Up
+    - Reminder emails / SMS
+    - Educational content"]
+    Router -->|Analytics only| Archive["Analytics & Dashboard
+    - Trend analysis
+    - Campaign performance"]
+
+    %% LOGGING
+    subgraph Logs["Logging & Analytics Layer"]
+        Store["Structured Lead Log
+        (Sheet / DB / CRM)"]
+        Dash["Dashboards & Reports"]
+    end
+
+    Booking --> Store
+    DHA_Route --> Store
+    Staff --> Store
+    Nurture --> Store
+    Archive --> Store
+
+    Store --> Dash
+
+
+
 # FIGHI
 FIGHI: Fisher-Information–Guided Hyper-interaction Inference for genome-wide epistasis discovery, summaries, and hypergraph outputs.
 

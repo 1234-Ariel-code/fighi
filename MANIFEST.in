@@ -1,0 +1,3 @@
+include README.md RELEASE.md LICENSE CITATION.cff CHANGELOG.md CONTRIBUTING.md CODE_OF_CONDUCT.md SECURITY.md
+recursive-include docs *.md *.svg
+recursive-include examples *.csv *.sh

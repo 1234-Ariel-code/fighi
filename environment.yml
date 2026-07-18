@@ -1,12 +1,13 @@
 name: fighi
-channels: [conda-forge, defaults]
+channels:
+  - conda-forge
 dependencies:
-  - python=3.10
-  - numpy
-  - pandas
-  - scipy
-  - matplotlib
-  - statsmodels
+  - python=3.12
+  - numpy>=1.24
+  - pandas>=2.0
+  - scipy>=1.10
+  - matplotlib>=3.7
   - pip
   - pip:
-      - gseapy    # optional; safe to keep
+      - -e .
+

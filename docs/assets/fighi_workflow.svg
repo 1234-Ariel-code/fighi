@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">FIGHI version 1 workflow</title>
+  <desc id="desc">Validated genotype phenotype and covariate input is quality controlled, split into discovery and inference partitions, screened and expanded on discovery data, tested on untouched inference data, adjusted for multiplicity, and exported as tables reports and hypergraphs.</desc>
+  <defs>
+    <linearGradient id="header" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#0f766e"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#64748b"/>
+    </marker>
+    <style>
+      .title{font:700 34px system-ui,sans-serif;fill:#fff}.subtitle{font:400 17px system-ui,sans-serif;fill:#ccfbf1}
+      .label{font:700 20px system-ui,sans-serif;fill:#0f172a}.text{font:400 15px system-ui,sans-serif;fill:#475569}
+      .small{font:600 14px system-ui,sans-serif;fill:#0f766e}.box{fill:#fff;stroke:#cbd5e1;stroke-width:1.5;rx:16;filter:url(#shadow)}
+      .discovery{fill:#ecfeff;stroke:#0891b2}.inference{fill:#f0fdf4;stroke:#16a34a}.output{fill:#f8fafc;stroke:#94a3b8}
+      .arrow{fill:none;stroke:#64748b;stroke-width:2.5;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1200" height="720" fill="#f8fafc"/>
+  <rect x="0" y="0" width="1200" height="112" fill="url(#header)"/>
+  <text x="60" y="53" class="title">FIGHI v1 workflow</text>
+  <text x="60" y="84" class="subtitle">Candidate discovery and final inference are intentionally separated</text>
+
+  <rect x="55" y="164" width="245" height="146" class="box"/>
+  <text x="82" y="202" class="small">INPUT</text>
+  <text x="82" y="238" class="label">Study table</text>
+  <text x="82" y="267" class="text">Genotype dosages</text>
+  <text x="82" y="290" class="text">Phenotype + covariates</text>
+
+  <path d="M300 237 H355" class="arrow"/>
+  <rect x="370" y="164" width="245" height="146" class="box"/>
+  <text x="397" y="202" class="small">VALIDATE</text>
+  <text x="397" y="238" class="label">Quality control</text>
+  <text x="397" y="267" class="text">Missingness • MAF • variance</text>
+  <text x="397" y="290" class="text">Encoding • covariates • audit</text>
+
+  <path d="M615 237 H670" class="arrow"/>
+  <rect x="685" y="164" width="460" height="146" class="box"/>
+  <text x="712" y="202" class="small">REPRODUCIBLE SPLIT</text>
+  <text x="712" y="238" class="label">Independent discovery and inference</text>
+  <text x="712" y="267" class="text">Stratified for binary traits • seeded • recorded</text>
+  <text x="712" y="290" class="text">Default: 40% discovery / 60% inference</text>
+
+  <path d="M820 310 V358 H395 V387" class="arrow"/>
+  <path d="M1010 310 V387" class="arrow"/>
+
+  <rect x="210" y="402" width="370" height="151" class="box discovery"/>
+  <text x="238" y="440" class="small">DISCOVERY PARTITION</text>
+  <text x="238" y="476" class="label">Screen + hierarchical expansion</text>
+  <text x="238" y="505" class="text">Marginal/variance/curated atoms</text>
+  <text x="238" y="528" class="text">Apriori candidates • beam • safety limits</text>
+
+  <path d="M580 478 H650" class="arrow"/>
+  <rect x="665" y="402" width="325" height="151" class="box inference"/>
+  <text x="693" y="440" class="small">UNTOUCHED INFERENCE PARTITION</text>
+  <text x="693" y="476" class="label">Adjusted score tests</text>
+  <text x="693" y="505" class="text">Covariates + all lower-order terms</text>
+  <text x="693" y="528" class="text">Global FDR or Bonferroni correction</text>
+
+  <path d="M990 478 H1040 V600 H910" class="arrow"/>
+  <rect x="290" y="590" width="620" height="92" class="box output"/>
+  <text x="320" y="626" class="small">DELIVERABLE RESULTS</text>
+  <text x="320" y="657" class="label">Tables • HTML report • provenance • JSON • GraphML • Cytoscape</text>
+</svg>

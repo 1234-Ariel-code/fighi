@@ -1,0 +1,2 @@
+5f6e3049150d40ae6a4fa2fb7ba93e07161ac7359cd79cc190ca72d6cf0a690c  dist/fighi-1.1.0-py3-none-any.whl
+d667a6f620df7a3127cba1301140e679834db8532e0702a7f36d395869aa320f  dist/fighi-1.1.0.tar.gz

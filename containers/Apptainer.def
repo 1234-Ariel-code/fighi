@@ -1,0 +1,28 @@
+Bootstrap: docker
+From: python:3.12-slim
+
+%labels
+    Author Ariel Ghislain Kemogne Kamdoum
+    Version 1.1.0
+    Description FIGHI reproducible interaction analysis
+
+%files
+    pyproject.toml /opt/fighi/pyproject.toml
+    README.md /opt/fighi/README.md
+    LICENSE /opt/fighi/LICENSE
+    src /opt/fighi/src
+
+%post
+    python -m pip install --no-cache-dir /opt/fighi
+    mkdir -p /data /tmp/matplotlib
+
+%environment
+    export PYTHONUNBUFFERED=1
+    export MPLCONFIGDIR=/tmp/matplotlib
+
+%runscript
+    exec fighi "$@"
+
+%test
+    fighi --version
+    fighi --help >/dev/null

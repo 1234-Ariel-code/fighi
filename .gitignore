@@ -7,8 +7,10 @@ __pycache__/
 htmlcov/
 .venv/
 venv/
+.conda/
 build/
 dist/
+*.sif
 fighi_demo/
 results/
 *.log
@@ -24,4 +26,6 @@ data/
 *.psam
 *.tped.gz
 *.phen
-
+*.vcf
+*.vcf.gz
+*.bcf

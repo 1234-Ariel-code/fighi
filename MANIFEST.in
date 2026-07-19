@@ -1,3 +1,7 @@
 include README.md RELEASE.md LICENSE CITATION.cff CHANGELOG.md CONTRIBUTING.md CODE_OF_CONDUCT.md SECURITY.md
+include environment.yml environment-arc.yml Dockerfile Makefile
 recursive-include docs *.md *.svg
 recursive-include examples *.csv *.sh
+recursive-include scripts *.sh *.sbatch
+recursive-include configs *.env
+recursive-include containers *.def

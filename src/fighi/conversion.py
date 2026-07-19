@@ -7,13 +7,16 @@ from collections import Counter
 from pathlib import Path
 
 import numpy as np
-import pandas as pd
 
 from .errors import InputValidationError
 
 
 def _open_text(path: Path):
-    return gzip.open(path, "rt", encoding="utf-8") if path.suffix == ".gz" else path.open(encoding="utf-8")
+    return (
+        gzip.open(path, "rt", encoding="utf-8")
+        if path.suffix == ".gz"
+        else path.open(encoding="utf-8")
+    )
 
 
 def _sample_ids(tfam: Path) -> list[str]:
@@ -112,4 +115,3 @@ def convert_tped(
         del matrix
         Path(temporary.name).unlink(missing_ok=True)
     return output
-

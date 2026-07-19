@@ -30,17 +30,27 @@ def make_plots(outdir: Path, result: SearchResult) -> dict[str, str]:
     fig, ax = plt.subplots(figsize=(9, 4.8))
     ax.scatter(np.arange(1, len(ranked) + 1), -np.log10(q_values), c=colors, s=18, alpha=0.8)
     ax.axhline(-np.log10(result.config.alpha), color="#b91c1c", linestyle="--", linewidth=1.2)
-    ax.set(xlabel="Interaction rank", ylabel=r"$-\log_{10}$(adjusted p-value)", title="Global interaction evidence")
+    ax.set(
+        xlabel="Interaction rank",
+        ylabel=r"$-\log_{10}$(adjusted p-value)",
+        title="Global interaction evidence",
+    )
     ax.grid(axis="y", color="#e2e8f0", linewidth=0.8)
     path = plot_dir / "interaction_evidence.png"
     _save(fig, path)
     paths["interaction_evidence"] = str(path)
 
     orders = sorted({item.order for item in result.interactions})
-    values = [[item.fi_gain for item in result.interactions if item.order == order] for order in orders]
+    values = [
+        [item.fi_gain for item in result.interactions if item.order == order] for order in orders
+    ]
     fig, ax = plt.subplots(figsize=(7.5, 4.8))
     ax.boxplot(values, tick_labels=[str(order) for order in orders], showfliers=False)
-    ax.set(xlabel="Interaction order", ylabel="Fisher-information gain", title="Evidence distribution by interaction order")
+    ax.set(
+        xlabel="Interaction order",
+        ylabel="Fisher-information gain",
+        title="Evidence distribution by interaction order",
+    )
     ax.grid(axis="y", color="#e2e8f0", linewidth=0.8)
     path = plot_dir / "fi_gain_by_order.png"
     _save(fig, path)
@@ -61,4 +71,3 @@ def make_plots(outdir: Path, result: SearchResult) -> dict[str, str]:
     _save(fig, path)
     paths["top_interactions"] = str(path)
     return paths
-

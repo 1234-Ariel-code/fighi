@@ -3,7 +3,6 @@ from __future__ import annotations
 from collections import defaultdict
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 from scipy.stats import hypergeom
 
@@ -43,7 +42,7 @@ def _load_gmt(paths: list[str | Path]) -> dict[str, set[str]]:
     terms: dict[str, set[str]] = {}
     for path in paths:
         with Path(path).open(encoding="utf-8") as handle:
-            for line_number, line in enumerate(handle, start=1):
+            for line in handle:
                 fields = line.rstrip("\n").split("\t")
                 if len(fields) < 3:
                     continue
@@ -78,7 +77,11 @@ def annotate_results(
         selected_features = frame.loc[frame[significant_column] > 0, feature_column].astype(str)
     else:
         selected_features = frame[feature_column].astype(str)
-    selected_genes = set().union(*(mapping.get(name, set()) for name in selected_features)) if len(selected_features) else set()
+    selected_genes = (
+        set().union(*(mapping.get(name, set()) for name in selected_features))
+        if len(selected_features)
+        else set()
+    )
 
     enrichment_columns = [
         "term",

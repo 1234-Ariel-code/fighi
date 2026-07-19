@@ -27,7 +27,7 @@ class CliTests(unittest.TestCase):
             for name in expected:
                 self.assertTrue((analysis / name).is_file(), name)
             summary = json.loads((analysis / "fighi_summary.json").read_text())
-            self.assertEqual(summary["software"]["version"], "1.0.0")
+            self.assertEqual(summary["software"]["version"], "1.1.0")
             self.assertGreater(summary["evaluated_interactions"], 0)
             ET.parse(analysis / "fighi_hypergraph.graphml")
 
@@ -42,4 +42,3 @@ class CliTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

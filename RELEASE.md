@@ -1,24 +1,35 @@
-# FIGHI 1.0.0 release summary
+# FIGHI 1.1.0 release summary
 
-Release date: 2026-07-17
+Release date: 2026-07-18
 
-This package is the production rewrite of the supplied FIGHI prototype. The detailed before/after review is in `docs/PROJECT_AUDIT.md`.
+FIGHI 1.1.0 is the cluster and comparative-validation release of Fisher-Information-Guided Hyperinteraction Inference.
 
-## Validated in this release
+## Release contents
 
-- 11 automated tests pass.
-- The wheel builds and installs in a clean virtual environment.
-- The installed `fighi` command runs without source-tree access.
-- The seeded demo evaluates 190 pairs and recovers the planted `rs_demo_03 × rs_demo_07` interaction after independent holdout inference and global FDR correction.
-- JSON/Cytoscape artifacts parse, GraphML is well formed, and the HTML report is created.
-- The supplied legacy toy CSV validates and runs through the new CLI.
-- Output-directory protection preserves unrelated user files unless overwrite is explicitly requested.
+- Everything in the production-oriented 1.0 statistical engine and reporting package.
+- Curated PLINK 2 BED/PGEN/VCF preparation with explicit alternate-allele dosage convention.
+- Truth-known binary and continuous interaction simulations with reproducible provenance.
+- A safe, versioned comparator runner for FIGHI, PLINK and generic MDR/GMDR, BOOST, BEAM, pathway-aware or information-theoretic outputs.
+- Harmonized correction, truth recovery, ranking overlap, resource measurement, logs and HTML reports.
+- ARC/Slurm jobs, an Apptainer recipe, a cluster Conda environment and a full real-data protocol.
 
-## Publication gates outside the software build
+## Verification target
 
-- Run the study-specific calibration and power suite described in `docs/VALIDATION.md`.
-- Obtain an independent statistical-method review.
-- Confirm the final author list, affiliations, repository namespace, package-index name, and citation/DOI metadata.
-- Publish the same tested wheel artifact through the checklist in `docs/RELEASING.md`.
+- All 17+ automated tests pass.
+- `scripts/verify_release.sh` completes the tests and a truth-known simulate-to-benchmark workflow.
+- Source and wheel distributions build and pass package metadata checks.
+- A clean installation reports version `1.1.0` and runs the CLI demo.
 
-The implementation is release-ready; scientific claims for a manuscript must remain limited to validation actually performed on the intended cohorts and simulations.
+Exact verification results and artifact hashes are regenerated immediately before the release commit.
+
+## Real-data status
+
+No controlled-access real dataset is bundled, and this repository does not claim that a real-cohort comparison has already run. The ARC jobs and protocol are ready to submit once authorized genotype/phenotype paths, the allocation/partition and separately installed comparator executables are provided. Results must be reported as study-specific validation, not as a property of the package alone.
+
+## Scientific status
+
+The implementation is research software, not a clinical diagnostic product. A substantive publication still requires study-specific calibration, power, population-structure and relatedness sensitivity, comparator-specific assumptions, independent replication and transparent failed-method reporting.
+
+## Release procedure
+
+Follow `docs/RELEASING.md`. The release tag must be `v1.1.0` and match `pyproject.toml`, `src/fighi/__init__.py`, `CITATION.cff`, the container label and built artifacts.

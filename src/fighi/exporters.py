@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from . import __version__
 from .search import InteractionResult
 
 
@@ -25,7 +26,10 @@ def export_hypergraph_json(
     features, chosen = _graph_elements(interactions, graph_top)
     payload = {
         "schema": "fighi-hypergraph-1.0",
-        "nodes": [{"id": f"s{index}", "label": name, "type": "feature"} for index, name in enumerate(features)],
+        "nodes": [
+            {"id": f"s{index}", "label": name, "type": "feature"}
+            for index, name in enumerate(features)
+        ],
         "hyperedges": [
             {
                 "id": f"h{index}",
@@ -42,9 +46,7 @@ def export_hypergraph_json(
     path.write_text(json.dumps(payload, indent=2, allow_nan=False), encoding="utf-8")
 
 
-def export_cytoscape(
-    path: Path, interactions: list[InteractionResult], graph_top: int
-) -> None:
+def export_cytoscape(path: Path, interactions: list[InteractionResult], graph_top: int) -> None:
     features, chosen = _graph_elements(interactions, graph_top)
     nodes = [
         {"data": {"id": f"s{index}", "label": name, "type": "feature"}}
@@ -79,7 +81,7 @@ def export_cytoscape(
             )
     payload = {
         "format_version": "1.0",
-        "generated_by": "FIGHI 1.0.0",
+        "generated_by": f"FIGHI {__version__}",
         "elements": {"nodes": nodes, "edges": edges},
     }
     path.write_text(json.dumps(payload, indent=2, allow_nan=False), encoding="utf-8")
@@ -95,7 +97,13 @@ def export_gml(path: Path, interactions: list[InteractionResult], graph_top: int
     feature_ids = {name: index for index, name in enumerate(features)}
     for name, node_id in feature_ids.items():
         lines.extend(
-            ["  node [", f"    id {node_id}", f'    label "{clean(name)}"', '    type "feature"', "  ]"]
+            [
+                "  node [",
+                f"    id {node_id}",
+                f'    label "{clean(name)}"',
+                '    type "feature"',
+                "  ]",
+            ]
         )
     offset = len(features)
     for index, item in enumerate(chosen):
@@ -135,7 +143,9 @@ def export_graphml(path: Path, interactions: list[InteractionResult], graph_top:
             f"{{{namespace}}}key",
             {"id": key_id, "for": target, "attr.name": name, "attr.type": value_type},
         )
-    graph = ET.SubElement(root, f"{{{namespace}}}graph", {"id": "FIGHI", "edgedefault": "undirected"})
+    graph = ET.SubElement(
+        root, f"{{{namespace}}}graph", {"id": "FIGHI", "edgedefault": "undirected"}
+    )
     feature_ids = {name: f"s{index}" for index, name in enumerate(features)}
     for name, node_id in feature_ids.items():
         node = ET.SubElement(graph, f"{{{namespace}}}node", {"id": node_id})
@@ -144,7 +154,9 @@ def export_graphml(path: Path, interactions: list[InteractionResult], graph_top:
     for index, item in enumerate(chosen):
         node_id = f"h{index}"
         node = ET.SubElement(graph, f"{{{namespace}}}node", {"id": node_id})
-        ET.SubElement(node, f"{{{namespace}}}data", {"key": "label"}).text = " × ".join(item.features)
+        ET.SubElement(node, f"{{{namespace}}}data", {"key": "label"}).text = " × ".join(
+            item.features
+        )
         ET.SubElement(node, f"{{{namespace}}}data", {"key": "type"}).text = "hyperedge"
         ET.SubElement(node, f"{{{namespace}}}data", {"key": "fi_gain"}).text = str(item.fi_gain)
         ET.SubElement(node, f"{{{namespace}}}data", {"key": "q_value"}).text = str(item.q_value)
@@ -152,7 +164,11 @@ def export_graphml(path: Path, interactions: list[InteractionResult], graph_top:
             ET.SubElement(
                 graph,
                 f"{{{namespace}}}edge",
-                {"id": f"e{index}_{member_index}", "source": node_id, "target": feature_ids[member]},
+                {
+                    "id": f"e{index}_{member_index}",
+                    "source": node_id,
+                    "target": feature_ids[member],
+                },
             )
     ET.ElementTree(root).write(path, encoding="utf-8", xml_declaration=True)
 
@@ -167,7 +183,9 @@ def export_edge_list(path: Path, interactions: list[InteractionResult], graph_to
                 writer.writerow([f"h{index}", member, item.order, item.fi_gain, item.q_value])
 
 
-def export_all(outdir: Path, interactions: list[InteractionResult], graph_top: int) -> dict[str, str]:
+def export_all(
+    outdir: Path, interactions: list[InteractionResult], graph_top: int
+) -> dict[str, str]:
     paths = {
         "hypergraph_json": outdir / "fighi_hypergraph.json",
         "cytoscape": outdir / "fighi_cytoscape.cyjs",
@@ -181,4 +199,3 @@ def export_all(outdir: Path, interactions: list[InteractionResult], graph_top: i
     export_graphml(paths["graphml"], interactions, graph_top)
     export_edge_list(paths["edge_list"], interactions, graph_top)
     return {name: str(path) for name, path in paths.items()}
-

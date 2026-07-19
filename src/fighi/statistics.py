@@ -75,7 +75,8 @@ def fit_logistic_null(
 
     converged = False
     iterations = 0
-    for iterations in range(1, max_iter + 1):
+    for iteration in range(1, max_iter + 1):
+        iterations = iteration
         eta = np.clip(design @ beta, -35.0, 35.0)
         probability = expit(eta)
         weights = np.clip(probability * (1.0 - probability), 1e-9, None)

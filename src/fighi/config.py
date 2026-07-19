@@ -5,7 +5,6 @@ from typing import Literal
 
 from .errors import InputValidationError
 
-
 Trait = Literal["auto", "binary", "linear"]
 Correction = Literal["fdr_bh", "bonferroni", "none"]
 ScreenMethod = Literal["hybrid", "marginal", "variance", "all"]
@@ -33,7 +32,7 @@ class AnalysisConfig:
     stability_threshold: float = 0.70
     graph_top: int = 100
 
-    def validate(self) -> "AnalysisConfig":
+    def validate(self) -> AnalysisConfig:
         if self.trait not in {"auto", "binary", "linear"}:
             raise InputValidationError("trait must be auto, binary, or linear")
         if not 2 <= self.max_order <= 6:

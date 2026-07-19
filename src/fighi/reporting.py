@@ -84,7 +84,9 @@ def _summary(result: SearchResult, input_path: str | None) -> dict:
     }
 
 
-def _html_report(outdir: Path, result: SearchResult, summary: dict, plot_paths: dict[str, str]) -> Path:
+def _html_report(
+    outdir: Path, result: SearchResult, summary: dict, plot_paths: dict[str, str]
+) -> Path:
     top = result.to_frame().head(50)
     rows = []
     for _, row in top.iterrows():
@@ -118,11 +120,11 @@ table{{border-collapse:collapse;width:100%;font-size:.92rem}}th,td{{padding:10px
 img{{width:100%;height:auto}}figcaption{{color:var(--muted);padding:8px}}code{{background:var(--soft);padding:2px 5px;border-radius:4px}}
 </style></head><body><main>
 <header><div>FIGHI v{__version__}</div><h1>Interaction discovery report</h1><p>Fisher-information-guided evidence with explicit statistical control.</p>
-<div class="meta"><div class="metric"><b>{result.qc['samples_analyzed']}</b>samples</div><div class="metric"><b>{result.qc['features_analyzed']}</b>QC-passed features</div><div class="metric"><b>{len(result.interactions)}</b>interactions tested</div><div class="metric"><b>{len(result.significant)}</b>significant interactions</div></div></header>
-<section class="card"><h2>Interpretation</h2><p>{html.escape(summary['interpretation'])}</p><p>Fisher-information gain is an evidence-ranking quantity; it is not, by itself, a significance decision. The <code>q_value</code> and configured alpha determine significance.</p></section>
+<div class="meta"><div class="metric"><b>{result.qc["samples_analyzed"]}</b>samples</div><div class="metric"><b>{result.qc["features_analyzed"]}</b>QC-passed features</div><div class="metric"><b>{len(result.interactions)}</b>interactions tested</div><div class="metric"><b>{len(result.significant)}</b>significant interactions</div></div></header>
+<section class="card"><h2>Interpretation</h2><p>{html.escape(summary["interpretation"])}</p><p>Fisher-information gain is an evidence-ranking quantity; it is not, by itself, a significance decision. The <code>q_value</code> and configured alpha determine significance.</p></section>
 <h2>Diagnostics</h2><div class="plots">{images or '<div class="card">No diagnostic plots were generated.</div>'}</div>
-<section class="card"><h2>Top evaluated interactions</h2><table><thead><tr><th>Features</th><th>Order</th><th>FI gain</th><th>p</th><th>adjusted p</th><th>Significant</th></tr></thead><tbody>{''.join(rows) or '<tr><td colspan="6">No candidates evaluated.</td></tr>'}</tbody></table></section>
-<section class="card"><h2>Quality and limitations</h2><ul>{warnings or '<li>No run warnings.</li>'}</ul><p>Screening, hierarchical expansion, model assumptions, population structure, LD, batch effects, and independent replication all affect interpretation. See the Methods and Limitations documentation before making biological claims.</p></section>
+<section class="card"><h2>Top evaluated interactions</h2><table><thead><tr><th>Features</th><th>Order</th><th>FI gain</th><th>p</th><th>adjusted p</th><th>Significant</th></tr></thead><tbody>{"".join(rows) or '<tr><td colspan="6">No candidates evaluated.</td></tr>'}</tbody></table></section>
+<section class="card"><h2>Quality and limitations</h2><ul>{warnings or "<li>No run warnings.</li>"}</ul><p>Screening, hierarchical expansion, model assumptions, population structure, LD, batch effects, and independent replication all affect interpretation. See the Methods and Limitations documentation before making biological claims.</p></section>
 </main></body></html>"""
     path = outdir / "fighi_report.html"
     path.write_text(document, encoding="utf-8")

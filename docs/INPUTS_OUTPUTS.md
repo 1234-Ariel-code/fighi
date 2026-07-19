@@ -9,7 +9,13 @@ Rows represent samples. Columns may contain:
 - optional numeric or categorical covariates;
 - numeric genotype dosage columns.
 
-CSV and TSV are supported. Feature values are expected in `[0, 2]` unless `--allow-non-genotype` is deliberately set. Common ID names are auto-detected; specify `--id-column` when ambiguous.
+CSV and TSV are supported, including `.csv.gz`, `.tsv.gz`, and `.tab.gz`. Feature values are expected in `[0, 2]` unless `--allow-non-genotype` is deliberately set. Common ID names are auto-detected; specify `--id-column` when ambiguous.
+
+## PLINK preparation outputs
+
+`prepare-plink` accepts a BED/BIM/FAM prefix, PGEN/PVAR/PSAM prefix, or VCF/BCF plus a required candidate list. Its main output is `fighi_input.tsv.gz`; genotypes count alternate alleles under PLINK 2 `--export A include-alt`. It also writes `fighi_candidates.txt`, `fighi_samples.txt`, an exact command, stdout/stderr logs and `prepare_plink_manifest.json` containing hashes and missing candidate IDs.
+
+Phenotype/covariate tables are joined by a unique string IID. Samples without an observed phenotype are removed and counted. The wrapper refuses ambiguous duplicate candidate IDs or duplicate phenotype IIDs.
 
 ## Quality control
 
@@ -50,3 +56,6 @@ Every change is counted in `fighi_summary.json`; nonfatal changes are also liste
 
 Only multiplicity-controlled significant interactions are exported to networks. Each interaction is represented as a hyperedge node connected to its member feature nodes. JSON preserves native hyperedges; GML, GraphML, Cytoscape, and TSV use the incidence-node representation.
 
+## Benchmark normalized columns
+
+`benchmark_interactions.csv` stores `method`, sorted `hyperedge`, `order`, raw `p_value`, optional `rank_score`, internal `rank_value`, optional `effect`, source file, harmonized q-value and harmonized significance flag. Ranking-only methods have missing p/q values by design; their declared score is used only for ranking metrics and overlap.

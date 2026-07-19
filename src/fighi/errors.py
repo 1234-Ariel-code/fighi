@@ -9,3 +9,10 @@ class InputValidationError(FIGHIError):
 class CandidateLimitError(FIGHIError):
     """Raised before a candidate search would exceed the configured safety limit."""
 
+
+class ExternalToolError(FIGHIError):
+    """Raised when an optional external program is missing or fails."""
+
+
+class BenchmarkError(FIGHIError):
+    """Raised when a benchmark manifest or comparator run is invalid."""

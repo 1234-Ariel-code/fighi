@@ -6,7 +6,7 @@ FIGHI screens candidate genomic features, builds interaction candidates hierarch
 
 ![FIGHI v1 workflow](docs/assets/fighi_workflow.svg)
 
-## What the production release adds
+## What the v1.1 release provides
 
 - A real installable Python package and `fighi` command.
 - Independent discovery/inference splitting by default.
@@ -16,7 +16,11 @@ FIGHI screens candidate genomic features, builds interaction candidates hierarch
 - Safe candidate-count limits and explicit exploratory mode.
 - CSV/TSV input, TPED/TFAM conversion, local SNP-to-gene mapping, and GMT enrichment.
 - CSV, JSON, HTML, GML, GraphML, Cytoscape, edge-list, provenance, and diagnostic outputs.
-- Reproducible demo, Python API, automated tests, CI, container, release checklist, and complete documentation.
+- PLINK 2 BED/PGEN/VCF preparation for curated candidate sets with allele convention, logs and hashes.
+- Truth-known binary/continuous simulations spanning null, main, interaction, LD and structure settings.
+- A safe manifest runner for FIGHI, PLINK, MDR/GMDR, BOOST, BEAM and generic comparators.
+- Harmonized p-value correction, truth recovery, top-result overlap, time, CPU and memory summaries.
+- Reproducible demo, Python API, automated tests, CI, Docker, Apptainer, ARC/Slurm scripts, and complete documentation.
 
 ## Install
 
@@ -24,7 +28,7 @@ Python 3.10 or newer is required.
 
 ```bash
 git clone https://github.com/1234-Ariel-code/fighi.git
-cd FIGHI
+cd fighi
 python -m venv .venv
 source .venv/bin/activate       # Windows: .venv\Scripts\activate
 python -m pip install --upgrade pip
@@ -70,6 +74,45 @@ Input is sample-by-column CSV or TSV. Candidate genotype columns must be numeric
 
 For a curated candidate set, place one feature name per line in a text file and add `--feature-file candidates.txt`. This is preferable to aggressive outcome-driven screening when prior biological knowledge is available.
 
+## Prepare BED/PGEN/VCF data
+
+`prepare-plink` invokes a separately installed PLINK 2 executable, exports only a pre-specified candidate set, merges an IID-keyed phenotype/covariate table, and writes a compressed sample-major table plus exact command, logs, retained samples/variants and SHA-256 provenance.
+
+```bash
+fighi prepare-plink \
+  --input /secure/cohort/qc/cohort \
+  --input-type pgen \
+  --candidates design/candidates.txt \
+  --samples design/keep.txt \
+  --phenotype-file /secure/cohort/phenotypes.tsv \
+  --phenotype-column case \
+  --covariates age,sex,PC1,PC2,PC3,PC4 \
+  --threads 8 \
+  --outdir work/prepared
+```
+
+Prepared dosages count alternate alleles because the wrapper uses PLINK 2 `--export A include-alt`. This workflow is for curated or already filtered variants, not a dense genome-wide text export. See the [real-data protocol](docs/REAL_DATA_PROTOCOL.md).
+
+## Simulate and compare methods
+
+```bash
+fighi simulate \
+  --outdir work/pairwise_seed17 \
+  --samples 1000 \
+  --features 100 \
+  --scenario pairwise \
+  --ld-rho 0.2 \
+  --seed 17
+
+fighi benchmark-template --output work/pairwise_seed17/benchmark.json
+fighi benchmark-validate work/pairwise_seed17/benchmark.json
+fighi benchmark-run work/pairwise_seed17/benchmark.json \
+  --outdir work/pairwise_seed17/comparison \
+  --strict
+```
+
+The generated manifest enables FIGHI and includes disabled PLINK and generic comparator adapters. Enable a comparator only after installing it separately and verifying its exact non-interactive command and output schema. FIGHI never invents p-values for ranking-only tools. Read [Benchmarking](docs/BENCHMARKING.md) for MDR/GMDR, PLINK, BOOST, BEAM, pathway-aware and information-theoretic comparison rules.
+
 ## Statistical modes
 
 The default `--discovery-fraction 0.40` uses 40% of samples for feature screening and hierarchical candidate construction, then uses the untouched 60% for final score tests and multiplicity correction. Binary splits are stratified.
@@ -110,6 +153,8 @@ Each tested order-$K$ interaction includes all within-candidate terms of orders 
 | `plots/` | Evidence, interaction ranking, and FI-gain diagnostics |
 
 An empty significant-interaction file and empty hypergraph are valid null results. FIGHI does not promote nonsignificant top-ranked candidates into discoveries.
+
+Benchmark runs additionally create `benchmark_runs.csv`, `benchmark_interactions.csv`, `benchmark_method_summary.csv`, `benchmark_overlap.csv`, `benchmark_summary.json`, plots, logs, resource records and a standalone HTML report.
 
 ## TPED/TFAM conversion
 
@@ -160,12 +205,13 @@ print(result.to_frame().head())
 - High-order interactions are combinatorial and require substantially larger samples. The default remains pairwise.
 - FIGHI is research software, not a clinical diagnostic system.
 
-Read [Methods](docs/METHODS.md), [Inputs and outputs](docs/INPUTS_OUTPUTS.md), [Scaling](docs/SCALING.md), and [Limitations](docs/LIMITATIONS.md) before a substantive analysis.
+Read [Methods](docs/METHODS.md), [Inputs and outputs](docs/INPUTS_OUTPUTS.md), [Scaling](docs/SCALING.md), [Limitations](docs/LIMITATIONS.md), [Real-data protocol](docs/REAL_DATA_PROTOCOL.md), and [Benchmarking](docs/BENCHMARKING.md) before a substantive analysis. Cluster users can start with the [ARC/Slurm quick start](docs/ARC_QUICKSTART.md).
 
 ## Development and release
 
 ```bash
 python -m unittest discover -s tests -v
+./scripts/verify_release.sh
 python -m build
 python -m twine check dist/*
 ```

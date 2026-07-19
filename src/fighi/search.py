@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import math
 import time
-from dataclasses import asdict, dataclass, field
+from collections.abc import Iterable
+from dataclasses import asdict, dataclass
 from itertools import combinations
-from typing import Iterable
 
 import numpy as np
 import pandas as pd
@@ -78,8 +78,10 @@ class SearchResult:
         ]
         if not rows:
             return pd.DataFrame(columns=columns)
-        return pd.DataFrame(rows).loc[:, columns].sort_values(
-            ["q_value", "p_value", "fi_gain"], ascending=[True, True, False]
+        return (
+            pd.DataFrame(rows)
+            .loc[:, columns]
+            .sort_values(["q_value", "p_value", "fi_gain"], ascending=[True, True, False])
         )
 
     @property
@@ -87,9 +89,7 @@ class SearchResult:
         return [item for item in self.interactions if item.significant]
 
 
-def _apriori_candidates(
-    previous: Iterable[tuple[str, ...]], order: int
-) -> list[tuple[str, ...]]:
+def _apriori_candidates(previous: Iterable[tuple[str, ...]], order: int) -> list[tuple[str, ...]]:
     previous_set = {tuple(sorted(item)) for item in previous}
     candidates: set[tuple[str, ...]] = set()
     previous_list = sorted(previous_set)
@@ -248,11 +248,7 @@ class FIGHI:
         selected = [item for item in ranked if item.q_order <= self.config.alpha]
         if len(selected) < self.config.beam_width:
             selected_ids = {item.features for item in selected}
-            selected.extend(
-                item
-                for item in ranked
-                if item.features not in selected_ids
-            )
+            selected.extend(item for item in ranked if item.features not in selected_ids)
         selected = selected[: self.config.beam_width]
         for item in selected:
             item.selected_for_expansion = True
@@ -282,11 +278,11 @@ class FIGHI:
                 sample = rng.choice(n, min(size, n), replace=False)
             sample_p = []
             for target in targets:
-                matrix = data.standardized.loc[:, list(target.features)].to_numpy(dtype=float)[sample]
+                matrix = data.standardized.loc[:, list(target.features)].to_numpy(dtype=float)[
+                    sample
+                ]
                 covariates = data.covariates[sample] if data.covariates is not None else None
-                score = score_interaction(
-                    matrix, data.phenotype[sample], data.trait, covariates
-                )
+                score = score_interaction(matrix, data.phenotype[sample], data.trait, covariates)
                 sample_p.append(score.p_value)
             adjusted = adjust_pvalues(np.asarray(sample_p), self.config.correction)
             counts += adjusted <= self.config.alpha

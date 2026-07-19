@@ -36,7 +36,8 @@ def _separator(path: Path, delimiter: str | None) -> str:
         if delimiter == "tab":
             return "\t"
         return "\t" if delimiter == "\\t" else delimiter
-    return "\t" if path.suffix.lower() in {".tsv", ".tab"} else ","
+    lowered = path.name.lower()
+    return "\t" if lowered.endswith((".tsv", ".tab", ".tsv.gz", ".tab.gz")) else ","
 
 
 def load_table(path: str | Path, delimiter: str | None = "auto") -> pd.DataFrame:
@@ -55,7 +56,9 @@ def load_table(path: str | Path, delimiter: str | None = "auto") -> pd.DataFrame
     return frame
 
 
-def _prepare_phenotype(series: pd.Series, requested_trait: str) -> tuple[np.ndarray, str, dict | None]:
+def _prepare_phenotype(
+    series: pd.Series, requested_trait: str
+) -> tuple[np.ndarray, str, dict | None]:
     non_missing = series.dropna()
     unique = list(pd.unique(non_missing))
     inferred_binary = len(unique) == 2
@@ -220,9 +223,7 @@ def prepare_dataframe(
         raise InputValidationError("Fewer than two features remained after quality control")
 
     standardized = (features - features.mean(axis=0)) / features.std(axis=0, ddof=0)
-    covariates, covariate_names, covariate_warnings = _prepare_covariates(
-        work[covariate_columns]
-    )
+    covariates, covariate_names, covariate_warnings = _prepare_covariates(work[covariate_columns])
     warnings.extend(covariate_warnings)
     sample_ids = work[id_column].astype(str).tolist() if id_column else None
     qc = {
@@ -271,7 +272,11 @@ def prepare_file(
     frame = load_table(path, delimiter)
     if id_column == "auto":
         id_column = next(
-            (name for name in ["IID", "iid", "sample_id", "sample", "ID", "id"] if name in frame.columns),
+            (
+                name
+                for name in ["IID", "iid", "sample_id", "sample", "ID", "id"]
+                if name in frame.columns
+            ),
             None,
         )
     return prepare_dataframe(

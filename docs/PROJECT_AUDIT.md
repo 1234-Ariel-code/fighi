@@ -16,7 +16,7 @@ The supplied prototype contained a promising high-level idea and useful prototyp
 | FI main-effect score column was always zero | Replaced by honest per-feature interaction contributions |
 | Pickle output exposed portability and trust risks | Portable versioned JSON result manifest |
 | Runtime, phenotype name, and version were hard-coded or missing | Accurate runtime, QC, trait, version, configuration, and provenance |
-| Version values disagreed across package and report | Single v1.0.0 release version |
+| Version values disagreed across package and report | One package version is used dynamically across reports and exports |
 | Wide CSV “chunking” still concatenated everything | Removed misleading scalability promise; explicit limits and guidance |
 | Batching claimed guaranteed cross-block interactions | Documentation now states coverage limitations |
 | TPED conversion repeatedly rewrote the full CSV | Disk-backed two-pass conversion with structural validation |
@@ -28,4 +28,3 @@ The supplied prototype contained a promising high-level idea and useful prototyp
 ## Deliberate scope decisions
 
 The release does not claim native PLINK BED/PGEN input, mixed-model relatedness correction, exhaustive genome-wide pair enumeration, distributed cross-block completeness, or clinical validity. These require separate validated engineering and methodological work and should not be implied by marketing text.
-
